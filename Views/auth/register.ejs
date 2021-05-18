@@ -1,0 +1,36 @@
+<div class="form-body" class="container-fluid">
+    <div class="row">
+        <div class="img-holder">
+            <div class="bg"></div>
+        </div>
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h1>Register</h1>
+                    <p>Use your email to create an account !</p>
+
+                    <%if(errors){
+                        for(let i = 0; i < errors.length; i++) {%>
+                        <div class="alert alert-danger" role="alert">
+                            <%=`${errors[i].param}: ${errors[i].msg}`;%>
+                        </div>
+                    <%}}%>
+                    
+                    <form method="POST">
+                        <input class="form-control" type="email" name="username" placeholder="Email" required>
+                        <input class="form-control" type="password" name="password" placeholder="Password" required>         
+                        <input class="form-control" type="text" name="fullname" placeholder="Full name" required>
+                        <input class="form-control" type="text" name="mobilephone" placeholder="Mobile Phone" required>
+                        <div class="form-button">
+                            <button id="submit" type="submit" class="ibtn">REGISTER</button>
+                        </div> 
+                        <div class="register-link">
+                            <p>Have an account ? <a href="/auth/login"> Login</a></p>
+                        </div>
+                        <div class="homepage"><a href="/"><i class="fas fa-arrow-left"></i></a></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="form-body" class="container-fluid">
+    <div class="row">
+        <div class="img-holder">
+            <div class="bg"></div>
+        </div>
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h1>Sign In</h1>
+                    <p>Make Cinema Great Again !</p>
+
+                    <%if(errors){
+                        for(let i = 0; i < errors.length; i++) {%>
+                        <div class="alert alert-danger" role="alert">
+                            <%=`${errors[i].param}: ${errors[i].msg}`;%>
+                        </div>
+                    <%}}%>
+                    
+                    <form method="POST">
+                        <input class="form-control" type="text" name="username" placeholder="Email" required>
+                        <input class="form-control" type="password" name="password" placeholder="Password" required>
+                        <div class="form-button">
+                            <button id="submit" type="submit" class="ibtn">LOGIN</button>
+                        </div>
+                        <div class="register-link">
+                            <p>Don't have an account ? <a href="/auth/register"> Register</a></p>
+                        </div>
+                        <div class="register-link">
+                            <p>Forgot your password ? <a href="/auth/forgotpassword"> Forgot password</a></p>
+                        </div>
+                        <hr>
+                    </form>
+                    <div class="form-button form-btn2">
+                        <button id="submit" type="submit" class="ibtn gg-btn">LOGIN WITH GOOGLE</button>
+                        <button id="submit" type="submit" class="ibtn fb-btn">LOGIN WITH FACEBOOK</button>
+                    </div>
+                    <div class="homepage"><a href="/"><i class="fas fa-arrow-left"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
