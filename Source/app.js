@@ -27,7 +27,7 @@ app.use(authMiddleware);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressLayouts);
 // thêm template EJS (sử dụng để code giao diện)
-app.set('views', './views');
+app.set('views', './Views');
 app.set('view engine','ejs');
 
 app.use('/auth',loginRouter);
