@@ -7,7 +7,7 @@
             <div class="form-content">
                 <div class="form-items">
                     <h1>Sign In</h1>
-                    <p>Make Cinema Great Again !</p>
+                    <p class="slogan">LET'S MAKE <span style="color: #e42b66;">CINEMA</span> GREAT AGAIN!</p>
 
                     <%if(errors){
                         for(let i = 0; i < errors.length; i++) {%>
@@ -23,13 +23,11 @@
                             <button id="submit" type="submit" class="ibtn">LOGIN</button>
                         </div>
                         <div class="register-link">
-                            <p>Don't have an account ? <a href="/auth/register"> Register</a></p>
-                        </div>
-                        <div class="register-link">
-                            <p>Forgot your password ? <a href="/auth/forgotpassword"> Forgot password</a></p>
-                        </div>
+                            <p><a href="/auth/forgotpassword"> Forgot your password ?</a></p>
+                            <p class="register">Don't have an account ? <a href="/auth/register"> Register</a></p>
                         <hr>
                     </form>
+                    
                     <div class="form-button form-btn2">
                         <button id="submit" type="submit" class="ibtn gg-btn">LOGIN WITH GOOGLE</button>
                         <button id="submit" type="submit" class="ibtn fb-btn">LOGIN WITH FACEBOOK</button>
