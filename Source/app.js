@@ -45,11 +45,10 @@ app.get('/',function(req,res)
 
 //connect
 db.sync().then(function(){
-
     const port=process.env.PORT||3000;
   
     console.log(`Server is listening on port ${port}`);
 
     app.listen(port);
   
-  }).catch(console.error);
+}).catch(console.error);

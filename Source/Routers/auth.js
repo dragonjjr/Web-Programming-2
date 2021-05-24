@@ -6,11 +6,18 @@ const User = require('../Models/users');
 const Email=require('../Models/email');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
+const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const passport = require('passport');
 
 router.use(function (req,res,next){
     res.locals.title='Login';
     next();
-})
+});
+
+router.use(passport.initialize());
+router.use(passport.session());
+
 
 router.get('/login',function(req,res){
     res.render('auth/login');
@@ -195,8 +202,83 @@ router.post('/resetpassword',expressAsyncHandler(async function(req,res){
    
 }));
 
+
+
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID || '1155874818257998',
+    clientSecret: process.env.FACEBOOK_APP_SECRET || '0ce9a896b4b4a157ff468b10352ce466',
+    callbackURL: "http://localhost:3000/auth/facebook/cb",
+    profileFields: ['id','email','displayName']
+  },
+   expressAsyncHandler( async function(accessToken, refreshToken, profile, cb) {
+        const found = await User.findByEmail(profile.emails[0].value);
+        if(found)
+        {
+
+            return cb(null,found.id);
+        }
+        else {
+            await User.createUser(profile.displayName,profile.emails[0].value,'','','user',null);
+        } 
+        const found2 = await User.findByEmail(profile.emails[0].value);
+        return cb(null,found2.id);
+  })));
+
+router.get('/facebook',
+  passport.authenticate('facebook',{scope:'email'}));
+
+router.get('/facebook/cb',
+  passport.authenticate('facebook', { failureRedirect: '/auth/login' }),
+  function(req, res) {
+    // Đăng nhập thành công
+    //Chuyển hướng
+    res.redirect('/');
+});
+passport.serializeUser(function(user,done){
+    done(null,user);
+});
+passport.deserializeUser(function(id,done){
+    return done(null,id);
+});
+
+
+
+
+
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_APP_ID || '166614953659-sakaimlo77u2836bn2eci0kd327v4eqq.apps.googleusercontent.com',
+    clientSecret: process.env.GOOGLE_APP_SECRET || 'GdOvaVe6MgIbF3WCqbUc4OpA',
+    callbackURL: "http://localhost:3000/auth/google/callback",
+  },
+   expressAsyncHandler( async function(accessToken, refreshToken, profile, cb) {
+        const found = await User.findByEmail(profile.emails[0].value);
+        if(found)
+        {
+
+            return cb(null,found.id);
+        }
+        else {
+            await User.createUser(profile.displayName,profile.emails[0].value,'','','user',null);
+        } 
+        const found2 = await User.findByEmail(profile.emails[0].value);
+        return cb(null,found2.id);
+  })));
+
+
+router.get('/google',
+  passport.authenticate('google',{scope:['profile','email']}));
+
+router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/auth/login' }),
+  function(req, res) {
+    // Đăng nhập thành công
+    //Chuyển hướng
+    res.redirect('/');
+});
+
 router.get('/logout',function(req,res){
     delete req.session.userId; //xóa session
+    req.logout();
     res.redirect('/');
 })
 

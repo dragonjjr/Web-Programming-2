@@ -33,7 +33,7 @@ const User = db.define('User', {
   });
 
 User.createUser = async function(name,email,pwd,phone,role,token) {
-    User.create({
+    await User.create({
         Email:email,
         Password:pwd,
         Name: name,
@@ -46,7 +46,7 @@ User.createUser = async function(name,email,pwd,phone,role,token) {
 
 User.findByEmail= async function(email)
 {
-    return User.findOne({
+    return await User.findOne({
         where: {
             Email: email
         },
@@ -55,7 +55,7 @@ User.findByEmail= async function(email)
 
 User.findById= async function(id)
 {
-    return User.findByPk(id);
+    return await User.findByPk(id);
 };
 
 User.activate= async function(emailActivate,token)
