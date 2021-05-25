@@ -9,8 +9,12 @@ const MovieTheater = db.define('MovieTheater', {
         type: DataTypes.STRING,
         allowNull: true,
     }, 
+    Image:{
+        type: DataTypes.BLOB,
+        allowNull: true,
+    },  
     Kind:{
-        type: DataTypes.STRING,
+        type: DataTypes.STRING, // 2D, 3D,...
         allowNull: true,
     },  
     Width:{

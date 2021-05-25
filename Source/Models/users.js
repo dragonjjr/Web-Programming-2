@@ -32,7 +32,7 @@ const User = db.define('User', {
        // Other model options go here
   });
 
-User.createUser = async function(name,email,pwd,phone,role,token) {
+  User.createUser = async function(name,email,pwd,phone,role,token) {
     await User.create({
         Email:email,
         Password:pwd,
@@ -77,6 +77,6 @@ User.activate= async function(emailActivate,token)
         }
     }
     return false;
-
 };
+
 module.exports=User;
