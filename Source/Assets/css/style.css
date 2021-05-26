@@ -1019,7 +1019,10 @@ button.owl-next {
 /*--//popular-grids--*/
 /*--/grids--*/
 
-
+.w3l-grids .box16:hover .box-content,
+.w3l-grids .box16:hover span.video-icon{
+  visibility: visible;
+}
 
 
 .w3l-grids .genre-grids {
@@ -1038,15 +1041,6 @@ button.owl-next {
 }
 
 
-
-/* .w3l-grids .box16 .box-content {
-  display: none;
-} */
-
-.w3l-grids .box16 .box-content:hover{
-  display: block;
-}
-
 .w3l-grids .box16 .box-content,
 .w3l-grids .box16:after {
   width: 100%;
@@ -1054,23 +1048,25 @@ button.owl-next {
   left: 0;
 }
 
-.w3l-grids .box16:after {
+ .w3l-grids .box16:after {
   content: "";
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.08) 69%, rgba(0, 0, 0, 0.76) 100%);
+  /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.08) 69%, rgba(0, 0, 0, 0.76) 100%); */
   top: 0;
   border-radius: 6px;
   transition: all .5s ease 0s;
-}
+} 
+
 
 .w3l-grids .box16 .post,
 .w3l-grids .box16 .title {
   transform: translateY(30px);
-  transition: all 0.4s cubic-bezier(0.13, 0.62, 0.81, 0.91) 0s;
+  transition: all 0.1s cubic-bezier(0.13, 0.62, 0.81, 0.91) 0s;
 }
 
 .w3l-grids .box16:hover:after {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 0, rgba(0, 0, 0, 0.09) 11%, rgba(0, 0, 0, 0.12) 13%, rgba(0, 0, 0, 0.19) 20%, rgba(0, 0, 0, 0.29) 28%, rgba(0, 0, 0, 0.29) 29%, rgba(0, 0, 0, 0.42) 38%, rgba(0, 0, 0, 0.46) 43%, rgba(0, 0, 0, 0.53) 47%, rgba(0, 0, 0, 0.75) 69%, rgba(0, 0, 0, 0.87) 84%, rgba(0, 0, 0, 0.98) 99%, rgba(0, 0, 0, 0.94) 100%);
+  transition: all .5s ease 0s;
 }
 
 .w3l-grids .box16 img {
@@ -1083,7 +1079,13 @@ button.owl-next {
   bottom: 30px;
   z-index: 1;
   text-align: left;
+  visibility: hidden;
 }
+
+.w3l-grids .box16 .box-content.now {
+  padding: 0;
+}
+
 
 .w3l-grids .box16 .box-content h3{
   text-align: center;
@@ -1091,11 +1093,9 @@ button.owl-next {
   text-transform: uppercase;
 }
 
-
 .w3l-grids .box16 .box-content h3.now-showing{
-  font-size: 17px;
+  font-size: 16px;
 }
-
 
 .w3l-grids .box16 .box-content .post {
   display: flex;
@@ -1162,7 +1162,9 @@ button.owl-next {
   border-radius: 50%;
   line-height: 39px;
   padding-left: 2px;
+  visibility: hidden;
 }
+
 
 .w3l-grids .box16 .social li a,
 .w3l-grids .box17 .icon li a {
