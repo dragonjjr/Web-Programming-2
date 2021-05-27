@@ -9,6 +9,10 @@ const MovieTheater = db.define('MovieTheater', {
         type: DataTypes.STRING,
         allowNull: true,
     }, 
+    Address:{
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
     Image:{
         type: DataTypes.BLOB,
         allowNull: true,

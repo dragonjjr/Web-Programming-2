@@ -7,10 +7,6 @@ const MovieTheaterCluster = db.define('MovieTheaterCluster', {
         type: DataTypes.STRING,
         allowNull: true,
     }, 
-    Address:{
-        type: DataTypes.STRING,
-        allowNull: true,
-    }
   },{
        // Other model options go here
   });

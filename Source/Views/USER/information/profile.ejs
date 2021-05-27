@@ -1,1 +1,19 @@
-<%- include('../../Layouts/layout_Information/MenuVertical.ejs'); %>
+<br><br><br><br>
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <%- include('../../Layouts/layout_Information/MenuVertical.ejs'); %>
+      </div>
+      <div class="col">
+        <h3>Change information</h3><br>
+        <form method="POST">
+            <label for="name"><b>Name:</b></label><br>
+            <input type="text" id="name" name="name" value="<%= currentUser.Name %>"><br><br>
+            <label for="phone"><b>Phone:</b></label><br>
+            <input type="text" id="phone" name="phone" value="<%= currentUser.Phone %>"><br><br>
+            <b>Email address:</b> <br><%= currentUser.Email %><br><br>
+            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>

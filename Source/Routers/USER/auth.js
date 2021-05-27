@@ -33,7 +33,7 @@ router.post('/login',expressAsyncHandler(async function(req,res){
     if(user && bcrypt.compareSync(password,user.Password)&&user.Token===null)
     {
         req.session.userId=user.id;
-        res.send("Logged in");
+        res.redirect('/');
     }
     else
     {
@@ -233,7 +233,6 @@ passport.use(new FacebookStrategy({
         const found = await User.findByEmail(profile.emails[0].value);
         if(found)
         {
-
             return cb(null,found.id);
         }
         else {
@@ -294,7 +293,7 @@ router.get('/google/callback',
 
 router.get('/logout',function(req,res){
     delete req.session.userId; //xóa session
-    res.redirect('/');
+    res.redirect('/auth/login');
 })
 
 module.exports=router;

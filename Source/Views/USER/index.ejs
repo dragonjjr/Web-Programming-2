@@ -119,28 +119,32 @@
 				</div>
 			</div>
 			<div class="w3l-populohny-grids">
-				<div class="item vhny-grid">
-					<div class="box16">
-						<a href="#small-dialog-popular1" class="popup-with-zoom-anim play-view1"> 
-							<figure>
-								<img class="img-fluid" src="/images/m7.jpg" alt="">
-							</figure>
-							<span class="fa fa-play video-icon" aria-hidden="true"></span>
-						</a> 
-						<div id="small-dialog-popular1" class="zoom-anim-dialog mfp-hide">
-							<iframe src="https://player.vimeo.com/video/350309430" allow="autoplay; fullscreen"
-								allowfullscreen=""></iframe>
-						</div>
-						<div class="box-content">
-							<h3 class="title">Frozen II</h3>
-							<div class="post">
-								<button type="button" class="btn btn-1">See Detail</button>
-								<button type="button" class="btn btn-1">Buy ticket</button>
+				<% var id=1;
+				for(var item of topMovies){ %>
+					<div class="item vhny-grid">
+						<div class="box16">
+							<a href="#small-dialog-popular<%- id %>" class="popup-with-zoom-anim play-view1"> 
+								<figure>
+									<img class="img-fluid" src="<%= item.PosterImage %>" alt="">
+								</figure>
+								<span class="fa fa-play video-icon" aria-hidden="true"></span>
+							</a> 
+							<div id="small-dialog-popular<%- id %>" class="zoom-anim-dialog mfp-hide">
+								<iframe src="<%= item.Trailer %>" allow="autoplay; fullscreen"
+									allowfullscreen=""></iframe>
+							</div>
+							<div class="box-content">
+								<h3 class="title"><%= item.Name %></h3>
+								<div class="post">
+									<button type="button" class="btn btn-1" onclick="window.location.href='/movie/detail'">See Detail</button>
+									<button type="button" class="btn btn-1">Buy ticket</button>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-
+					<% id++;
+				} %>
+				
 			</div>
 		</div>
 	</div>
@@ -158,136 +162,34 @@
 				</div>
 			</div>
 			<div class="owl-three owl-carousel owl-theme">
-				<div class="item vhny-grid">
-					<div class="box16 mb-0">
-						<a href="#small-dialog-now1" class="popup-with-zoom-anim play-view1">
-							<figure>
-								<img class="img-fluid" src="/images/n1.jpg" alt="">
-							</figure>
-							<span class="fa fa-play video-icon" aria-hidden="true"></span>
-						</a>
-						<div id="small-dialog-now1" class="zoom-anim-dialog mfp-hide">
-							<iframe src="https://player.vimeo.com/video/305053443" allow="autoplay; fullscreen"
-								allowfullscreen=""></iframe>
-						</div>
-						<div class="box-content now">
-							<h3 class="title now-showing">Name</h3>
-							<div class="post">
-								<button type="button" class="btn btn-2">See Detail</button>
-								<button type="button" class="btn btn-2">Buy ticket</button>
+				<% var id=1;
+				for(var item of nowShowingMovies){ %>
+					<div class="item vhny-grid">
+						<div class="box16 mb-0">
+							<a href="#small-dialog-now<%- id %>" class="popup-with-zoom-anim play-view1">
+								<figure>
+									<img class="img-fluid" src="<%= item.PosterImage %>" alt="">
+								</figure>
+								<span class="fa fa-play video-icon" aria-hidden="true"></span>
+							</a>
+							<div id="small-dialog-now<%- id %>" class="zoom-anim-dialog mfp-hide">
+								<iframe src="<%= item.Trailer %>" allow="autoplay; fullscreen"
+									allowfullscreen=""></iframe>
+							</div>
+							<div class="box-content now">
+								<h3 class="title now-showing"><%= item.Name %></h3>
+								<div class="post">
+									<button type="button" class="btn btn-2" onclick="window.location.href='/movie/detail'">See Detail</button>
+									<button type="button" class="btn btn-2">Buy ticket</button>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="item vhny-grid">
-					<div class="box16 mb-0">
-						<a href="#small-dialog-now2" class="popup-with-zoom-anim play-view1">
-							<figure>
-								<img class="img-fluid" src="/images/n2.jpg" alt="">
-							</figure>
-							<span class="fa fa-play video-icon" aria-hidden="true"></span>
-						</a>
-						<div id="small-dialog-now2" class="zoom-anim-dialog mfp-hide">
-							<iframe src="https://player.vimeo.com/video/305053443" allow="autoplay; fullscreen"
-								allowfullscreen=""></iframe>
-						</div>
-						<div class="box-content now">
-							<h3 class="title now-showing">Name</h3>
-							<div class="post">
-								<button type="button" class="btn btn-2">See Detail</button>
-								<button type="button" class="btn btn-2">Buy ticket</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item vhny-grid">
-					<div class="box16 mb-0">
-						<a href="#small-dialog-now3" class="popup-with-zoom-anim play-view1">
-							<figure>
-								<img class="img-fluid" src="/images/n3.jpg" alt="">
-							</figure>
-							<span class="fa fa-play video-icon" aria-hidden="true"></span>
-						</a>
-						<div id="small-dialog-now3" class="zoom-anim-dialog mfp-hide">
-							<iframe src="https://player.vimeo.com/video/305053443" allow="autoplay; fullscreen"
-								allowfullscreen=""></iframe>
-						</div>
-						<div class="box-content now">
-							<h3 class="title now-showing">Name</h3>
-							<div class="post">
-								<button type="button" class="btn btn-2">See Detail</button>
-								<button type="button" class="btn btn-2">Buy ticket</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item vhny-grid">
-					<div class="box16 mb-0">
-						<a href="#small-dialog-now4" class="popup-with-zoom-anim play-view1">
-							<figure>
-								<img class="img-fluid" src="/images/n4.jpg" alt="">
-							</figure>
-							<span class="fa fa-play video-icon" aria-hidden="true"></span>
-						</a>
-						<div id="small-dialog-now4" class="zoom-anim-dialog mfp-hide">
-							<iframe src="https://player.vimeo.com/video/305053443" allow="autoplay; fullscreen"
-								allowfullscreen=""></iframe>
-						</div>
-						<div class="box-content now">
-							<h3 class="title now-showing">Name</h3>
-							<div class="post">
-								<button type="button" class="btn btn-2">See Detail</button>
-								<button type="button" class="btn btn-2">Buy ticket</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item vhny-grid">
-					<div class="box16 mb-0">
-						<a href="#small-dialog-now5" class="popup-with-zoom-anim play-view1">
-							<figure>
-								<img class="img-fluid" src="/images/n5.jpg" alt="">
-							</figure>
-							<span class="fa fa-play video-icon" aria-hidden="true"></span>
-						</a>
-						<div id="small-dialog-now5" class="zoom-anim-dialog mfp-hide">
-							<iframe src="https://player.vimeo.com/video/305053443" allow="autoplay; fullscreen"
-								allowfullscreen=""></iframe>
-						</div>
-						<div class="box-content now">
-							<h3 class="title now-showing">Name</h3>
-							<div class="post">
-								<button type="button" class="btn btn-2">See Detail</button>
-								<button type="button" class="btn btn-2">Buy ticket</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item vhny-grid">
-					<div class="box16 mb-0">
-						<a href="#small-dialog-now6" class="popup-with-zoom-anim play-view1">
-							<figure>
-								<img class="img-fluid" src="/images/n6.jpg" alt="">
-							</figure>
-							<span class="fa fa-play video-icon" aria-hidden="true"></span>
-						</a>
-						<div id="small-dialog-now6" class="zoom-anim-dialog mfp-hide">
-							<iframe src="https://player.vimeo.com/video/305053443" allow="autoplay; fullscreen"
-								allowfullscreen=""></iframe>
-						</div>
-						<div class="box-content now">
-							<h3 class="title now-showing">Name</h3>
-							<div class="post">
-								<button type="button" class="btn btn-2">See Detail</button>
-								<button type="button" class="btn btn-2">Buy ticket</button>
-							</div>
-						</div>
-					</div>
-				</div>
+				<% id++;
+			 	} %>
+
 			</div>
-
 		</div>
-
 	</div>
 </section>
 <!--grids-sec2-->

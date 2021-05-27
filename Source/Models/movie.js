@@ -50,15 +50,22 @@ Movie.findById= async function(id)
 
 Movie.getListNewMovie= async function(top)
 {
-    const movies = await sequelize.query("SELECT TOP 5 FROM `Movies` ORDER BY ReleaseDate DESC", { type: DataTypes.SELECT });
+    const movies = await db.query('SELECT * FROM "Movies" ORDER BY "ReleaseDate" DESC LIMIT ?', 
+            { 
+                replacements: [top], //mảng danh sách tham số
+                type: db.QueryTypes.SELECT 
+            });
     return movies;
 };
 
-Movie.getListTopMovie= async function()
+Movie.getListTopMovie= async function(top)
 {
-    //lấy danh sách các phim (5) bán được nhiều vé nhất
-    const movies = await sequelize.query("SELECT TOP 5 mv.id,COUNT(*) AS SumTicket FROM `Movies` mv JOIN `Showtimes` st ON mv.id=st.MoviedId JOIN `Bookings` bk ON st.id=bk.ShowtimeId JOIN `Tickets` tk ON tk.BookingID=bk.ID GROUP BY mv.id, mv.Name, mv.ReleaseDate, mv.PosterImage, mv.Time, mv.Trailer ORDER BY SumTicket DESC"
-                        ,{ type: DataTypes.SELECT });
+    //lấy danh sách các phim bán được nhiều vé nhất
+    const movies = await db.query('SELECT "mv"."id", COUNT(*) AS "SumTicket" FROM "Movies" AS mv JOIN "Showtimes" AS st ON "mv"."id"="st"."MovieId" JOIN "Bookings" AS bk ON "st"."id"="bk"."ShowtimeId" JOIN "Tickets" AS tk ON "tk"."BookingID"="bk"."ID" GROUP BY "mv"."id", "mv"."Name", "mv"."ReleaseDate", "mv"."PosterImage", "mv"."Time", "mv"."Trailer" ORDER BY "SumTicket" DESC LIMIT ?',
+                        { 
+                            replacements: [top],
+                            type: db.QueryTypes.SELECT 
+                        });
     return movies;
 };
 
