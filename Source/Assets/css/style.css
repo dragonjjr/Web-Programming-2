@@ -1,4 +1,11 @@
+/*
+1. Homepage
+2. Movie Detail
+*/
 
+
+
+/* 1. Homepage */
 /*-- container --*/
 .container {
   width: 100%;
@@ -1758,17 +1765,18 @@ button.owl-next {
   outline: none !important;
 }
 
+/*============ EDIT POSITION VIDEO PLAYE================= */
 .mfp-container {
   text-align: center;
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
-  top: -950px;
+  top: -300px;
   padding: 0 8px;
   box-sizing: border-box;
 }
-
+/* ============================================ */
 .mfp-container:before {
   content: '';
   display: inline-block;
@@ -2229,3 +2237,145 @@ div#small-dialog-coming4 iframe,
   border-radius: 10px;
 }
 /* ===== END POPUP TRAILER FOR SLIDER======*/
+
+
+/* 2. Movie Detail */
+.container.movie-detail .movie-nav{
+  font-size: 20px;
+}
+
+.container.movie-detail .movie-nav a{
+  text-decoration: none;
+  color: black;
+  cursor: default;
+  pointer-events: none;
+}
+.container.movie-detail .movie-nav{
+  margin-top: 80px;
+  width:100%;
+  height: 20px;
+
+}
+.movie-img img{
+  width: 100%;
+}
+
+.heading-section {
+	text-align: center;
+	margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.heading-section h1 {
+  
+    font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 15px;
+	font-family: 'Poppins', sans-serif;
+}
+
+.movie-name {
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 22px;
+	margin-bottom: 4px;
+}
+
+.movie-detali-list{
+  list-style: none;
+  padding-left: 0;
+}
+
+.movie-detali-list li{
+  font-size: 18px;
+}
+
+.movie-detali-list li span{
+  font-weight: bold;
+}
+
+.display-flex {
+	display: flex;
+}
+.align-center {
+	align-items: center;
+}
+.movie-info {
+	width: 100%;
+}
+
+.movie-detail .row .movie-dtl .movie-info .movie-name h2  {
+	text-transform: uppercase;
+}
+
+.movie-button{
+margin: 0 5px;
+}
+
+.round-black-btn {
+	border-radius: 5px;
+  background: var(--theme-rose);
+  color: #fff;
+  padding: 7px 45px;
+  display: inline-block;
+  margin-top: 20px;
+  border: solid 2px var(--theme-rose);
+  transition: all 0.2s ease-in-out 0s;
+}
+.round-black-btn:hover,
+.round-black-btn:focus {
+	background: #bd034d;
+  color: #fff;
+	text-decoration: none;
+  border: solid 2px var(--theme-rose) 
+}
+
+.round-black-btn.watch {
+  background: #fff;
+  color: var(--theme-rose);;
+  border: solid 2px var(--theme-rose);
+  transition: all 0.2s ease-in-out 0s;
+}
+
+.round-black-btn.watch:hover,
+.round-black-btn.watch:focus {
+  color:#bd034d;
+	text-decoration: none;
+  border: solid 2px #bd034d ;
+  background: rgb(251, 251, 251);
+}
+
+.movie-info-tabs {
+	margin-top: 25px; 
+}
+.movie-info-tabs .nav-tabs {
+	border-bottom: 2px solid #d8d8d8;
+  
+}
+.movie-info-tabs .nav-tabs .nav-item {
+	margin-bottom: 0;
+  margin: 0 auto;
+  
+}
+.movie-info-tabs .nav-tabs .nav-link {
+	border: none; 
+	border-bottom: 2px solid transparent;
+	color: #323232;
+}
+.movie-info-tabs .nav-tabs .nav-item .nav-link:hover {
+	border: none; 
+}
+.movie-info-tabs .nav-tabs .nav-item.show .nav-link, 
+.movie-info-tabs .nav-tabs .nav-link.active, 
+.movie-info-tabs .nav-tabs .nav-link.active:hover {
+	border: none; 
+	border-bottom: 2px solid #d8d8d8;
+	font-weight: bold;
+}
+.movie-info-tabs .tab-content .tab-pane {
+	padding: 30px 20px;
+	font-size: 15px;
+	line-height: 24px;
+	color: #7a7a7a;
+}
+
