@@ -240,7 +240,7 @@ passport.use(new FacebookStrategy({
         } 
         const found2 = await User.findByEmail(profile.emails[0].value);
         return cb(null,found2.id);
-  })));
+})));
 
 router.get('/facebook',
   passport.authenticate('facebook',{scope:'email'}));
@@ -276,7 +276,7 @@ passport.use(new GoogleStrategy({
         } 
         const found2 = await User.findByEmail(profile.emails[0].value);
         return cb(null,found2.id);
-  })));
+})));
 
 
 router.get('/google',
@@ -293,6 +293,7 @@ router.get('/google/callback',
 
 router.get('/logout',function(req,res){
     delete req.session.userId; //xóa session
+    req.logout();
     res.redirect('/auth/login');
 })
 
