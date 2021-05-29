@@ -46,7 +46,7 @@
                             allowfullscreen=""></iframe>
                     </div>
                     <div class="movie-button col-md6">
-                        <a href="#" class="round-black-btn">Buy Ticket</a>
+                        <a href="#order" class="round-black-btn order_btn">Buy Ticket</a>
                     </div>
                 </div>
                 
@@ -55,3 +55,90 @@
     </div>
     <hr>
 </div>
+<!-- ------ORDER POPUP------ -->
+<div id="order">
+    <div class="container">
+        <div class="row order-content">
+            <div class="col-sm-8 col-xs-12 seat_content ph0">
+                <h2>order a ticket</h2>
+                <div class="entry-order-content">
+                    <form id="msform" name="msform">
+                        <!-- fieldsets -->
+                        <fieldset>
+                             <div class="wpc-content">
+                                <h3>location</h3>
+                                <div class="select-section">
+                                    <select name="location">
+                                        <option>Ho Chi Minh</option>
+                                        <option>Ha Noi </option>
+                                        <option>Da Nang</option>
+                                        <option>Nha Trang</option>                  
+                                    </select>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </div>
+                                <h3>cinema</h3>
+                                <div class="select-section">
+                                    <select name="cinema">
+                                        <option>Cinema 1</option>
+                                        <option>Cinema 2</option>
+                                        <option>Cinema 3</option>
+                                        <option>Cinema 4</option>
+                                    </select>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </div>
+                                <h3 class="mt3">Movie</h3>
+                                <div class="select-section">
+                                    <select>
+                                        <option>Avengers: Endgame</option>
+                                        <option>Train to Busan</option>
+                                        <option>Chúa tể đổ vỏ</option>
+                                        <option>CEO Nguyễn Phương Hằng</option>
+                                    </select>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </div>
+                                <h3 class="mt3">Date</h3>
+                                <input type='date' class="datetime"/>
+                                <h3 class="mt3">TIME</h3>
+                                <ul class="order-date">
+                                    <li><a href="#"><i>11:50</i></a></li>
+                                    <li><a href="#"><i>13:40</i></a></li>
+                                    <li><a href="#"><i>16:35</i></a></li>
+                                    <li><a href="#"><i>17:30</i></a></li>
+                                </ul>
+                            </div>
+                        <input type="button" name="next" class="next action-button" value="Next" />  
+                        </fieldset>
+                        <fieldset class="seat-content">
+                            <div class="wpc-content">
+                                <h3 class="seat_title"></h3>
+                                <!--Vị trí ghế xem file script.min.js và package.js-->
+                                <div id="seat-map"></div>
+                                <div id="legend"></div>
+                            </div>
+                            <input type="button" name="previous" class="action-button previous" value="Previous" />
+                            <input type="submit" name="submit" class="submit action-button" value="Submit" />
+                        </fieldset>                      
+                    </form>
+                    
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12 order_sidebar ph0">
+                <h2>Your Information</h2>
+                <div class="order-details">
+                    <span> Location:</span><p id="locationp">Ho Chi Minh</p>
+                    <span> Cinema:</span><p>Cinema 1</p>
+                    <span>Time:</span>  <p>2021/30/5 18:30</p>
+                    <span>Seat: </span>
+                    <ul id="selected-seats"></ul>
+                    <div class="count">Tickets: <span id="counter">0</span></div>
+                    <div class="price"><b>TOTAL:</b> $<span id="total">0</span></div>
+                </div>
+                <a href="#" class="close-window"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+    </div>
+</div>    
+           
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/packages.min.js"></script>
+<script type="text/javascript" src="/js/scripts.min.js"></script>
