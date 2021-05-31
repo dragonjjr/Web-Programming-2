@@ -1,6 +1,8 @@
 /*
 1. Homepage
 2. Movie Detail
+3. Order
+4. Cinemas
 */
 
 
@@ -2740,3 +2742,142 @@ margin: 0 5px;
   display: none;
 }
 /* ================End Of Order=============== */
+
+/* 4.Cinemas */
+.container.cinemas{
+  margin-top: 100px;
+  background: #353233;
+  border: 1px solid black;  
+  margin-bottom: 50px;
+}
+
+.container.cinemas hr {
+  border: 1px solid #717171;
+}
+.container.cinemas .title{
+  text-align: center;
+}
+
+.container.cinemas h1,
+.container.cinemas h2{
+  color: #dbdbdb
+}
+.container.cinemas .title h1{
+  font-size: 70px;
+  font-weight: 600;
+}
+.container.cinemas li a.nav-link{
+  color: #dbd3d3;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.container.cinemas .cinema-area li a.nav-link:hover{
+  color:#e71a0f;
+}
+.container.cinemas .cinema-area li a.nav-link:focus{
+  color:#e71a0f;
+}
+.container.cinemas .cinema-list li a.nav-link:focus{
+  background: #e71a0f;
+  border-radius: 10px;
+  
+}
+
+
+.container.theater{
+  margin-bottom: 50px;
+  max-width: 1170px;
+}
+
+.container.theater .theater-info img{
+  width: 100%;
+}
+
+.container.theater h1{
+  font-size: 70px;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.container.theater .theater-name{
+  text-align: center;
+}
+
+.container.theater .theater-name h2{
+  font-size: 45px;
+}
+
+.container.theater .theater-name p{
+  font-size: 16px;
+}
+/* .container.theater .theater-button .row {
+  width: 100%;
+}    */
+
+.container.theater .theater-button .button-row{
+  text-align: center;
+}
+
+.container.theater .theater-button .button-row .movie-button {
+  display: inline-block;
+}
+
+.container.theater .theater-button .round-red-btn {
+	border-radius: 5px;
+  background: #e71a0f;
+  color: #fff;
+  padding: 7px 45px;
+  display: inline-block;
+  margin-top: 20px;
+  border: solid 2px #e71a0f;  
+  transition: all 0.2s ease-in-out 0s;
+}
+.container.theater .theater-button .round-red-btn:hover,
+.container.theater .theater-button .round-red-btn:focus {
+	background: #b81008;
+  color: #fff;
+	text-decoration: none;
+  border: solid 2px #e71a0f ;
+  outline: none;
+}
+
+.container.theater #showtimes {
+  margin-top: 20px;
+}
+
+.container.theater #showtimes .movies .times a.nav-link{
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #000;
+  border: 1px solid #9e9c9c;
+  margin: 5px;
+}
+
+.container.theater #showtimes .movies{
+  margin-bottom: 30px;
+}
+
+.container.theater #showtimes .movies .times a.nav-link:hover{
+  border: 1px solid #0c0c0c;
+}
+
+.container.theater #showtimes .movies p.movie-name{
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.container.theater #details .img-price{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.container.theater #details .details{
+  font-size: 16px;
+}

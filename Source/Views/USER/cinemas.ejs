@@ -1,0 +1,178 @@
+<div class="container cinemas">
+	<div class="title">
+		<h1>CINEMAS</h1>
+		<hr>
+	</div>
+	<div class="cinema-area">
+		<h2>Cinema Area</h2>
+		<ul class="nav">
+			<li class="nav-item"><a href="#" class="nav-link" onclick="toggleVisibility('1');">Hồ Chí Minh</a></li>
+			<li class="nav-item"><a href="#" class="nav-link" onclick="toggleVisibility('2');">Hà Nội</a></li>
+			<li class="nav-item"><a href="#" class="nav-link" onclick="toggleVisibility('3');">Đà Nẵng</a></li>
+			<li class="nav-item"><a href="#" class="nav-link" onclick="toggleVisibility('4');">Nha Trang</a></li>
+		</ul>
+		<hr>
+	</div>
+	<div class="cinema-list">
+		<h2>Cinema List</h2>
+		<div id="1">
+			<ul class="nav" onclick="showTheater()">
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Q1</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Q2</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Q3</a></li>
+			</ul>
+		</div>
+		<div id="2" style="display: none;">
+			<ul class="nav" onclick="showTheater()">
+				<li class=" nav-item"><a href="#" class="nav-link">Cinema Nam Từ Liêm</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Đống Đa</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Thanh Xuân</a></li>
+			</ul>
+		</div>
+		<div id="3" style="display: none;">
+			<ul class="nav" onclick="showTheater()">
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Thanh Khê</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Sơn Trà</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Cẩm Lệ</a></li>
+			</ul>
+		</div>
+		<div id="4" style="display: none;">
+			<ul class="nav" onclick="showTheater()">
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Lộc Thọ</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Tân Lập</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">Cinema Phước Hải</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="theater" class="container theater" style="display: none;">
+	<h1>THEATER</h1>
+	<div class="theater-name">
+		<h2>Cinema Q1</h2>
+		<p>Tầng 3, TTTM Vincom Center Đồng Khởi, 72 Lê Thánh Tôn & 45A Lý Tự Trọng, Quận 1, TP.HCM</p>
+	</div>
+	<div class="theater-info">
+		<img src="/images/theater.jpg" class="img-fluid" alt="theater">
+	</div>
+	<div class="theater-button">
+		<div class="button-row">
+			<div class="movie-button">
+				<button class="round-red-btn" onclick="toggleVisibility2('showtimes')">Showtimes</button>
+				<button class="round-red-btn" onclick="toggleVisibility2('details')"> Details</button>
+			</div>
+		</div>
+	</div>
+	<div id="showtimes">
+		<div class="movies">
+			<p class="movie-name">Avengers: Endgame</p>
+			<ul class="nav times">
+				<li class="nav-item"><a href="#" class="nav-link">11:00 AM</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">12:00 PM</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">22:50 PM</a></li>
+			</ul>
+			
+		</div>
+		<hr>
+		<div class="movies">
+			<p class="movie-name">Frozen II</p>
+			<ul class="nav times">
+				<li class="nav-item"><a href="#" class="nav-link">8:00 AM</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">15:00 PM</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">19:50 PM</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">21:00 PM</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">23:50 PM</a></li>
+			</ul>
+			
+		</div>
+		<hr>
+		<div class="movies">
+			<p class="movie-name">One Piece</p>
+			<ul class="nav times">
+				<li class="nav-item"><a href="#" class="nav-link">8:00 AM</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">15:00 PM</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">21:00 PM</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">23:50 PM</a></li>
+			</ul>
+			
+		</div>
+	</div>
+	<div id="details" style="display: none;">
+		<div class="img-price">
+			<img src="/images/price.png" class="img-fluid" alt="price">
+		</div>
+		<ul class="nav details">
+			<li class="nav-item">- Dành cho khách hàng tại rạp Gold Class, trà và cà phê được phục vụ miễn phí 30 phút/1
+				lần trong suốt suất chiếu.</li>
+			<li class="nav-item">- Vui lòng xuất trình thẻ thành viên CGV trước khi mua vé để được tích điểm.</li>
+			<li class="nav-item">- Giá vé khi đặt vé trực tuyến trên website và ứng dụng CGV là giá vé người lớn. Các
+				loại vé như học sinh-sinh viên, vé trẻ em, vé người cao tuổi, vé U22 vui lòng mua trực tiếp tại quầy.
+			</li>
+			<li class="nav-item">- Vé trẻ em chỉ xuất khi có sự hiện diện của trẻ dưới 1m3 và trên 2 tuổi.</li>
+		</ul>
+	</div>
+</div>
+
+
+
+
+<script>
+
+	//cinema list
+	var divs = ["1", "2", "3", "4"];
+	var visibleDivId = null;
+	function toggleVisibility(divId) {
+		if (visibleDivId === divId) {
+			//visibleDivId = null;
+		} else {
+			visibleDivId = divId;
+		}
+		hideNonVisibleDivs();
+	}
+	function hideNonVisibleDivs() {
+		var i, divId, div;
+		for (i = 0; i < divs.length; i++) {
+			divId = divs[i];
+			div = document.getElementById(divId);
+			if (visibleDivId === divId) {
+				div.style.display = "block";
+			} else {
+				div.style.display = "none";
+			}
+		}
+	}
+
+	function showTheater() {
+		var x = document.getElementById("theater");
+		if (x.style.display === "none") {
+			x.style.display = "block";
+		} else {
+			
+		}
+	}
+
+	//movie showtimes
+	var divs2 = ["showtimes", "details"];
+	var visibleDivId2 = null;
+	function toggleVisibility2(divId) {
+		if (visibleDivId2 === divId) {
+			//visibleDivId = null;
+		} else {
+			visibleDivId2 = divId;
+		}
+		hideNonVisibleDivs2();
+	}
+	function hideNonVisibleDivs2() {
+		var i, divId, div;
+		for (i = 0; i < divs.length; i++) {
+			divId = divs2[i];
+			div = document.getElementById(divId);
+			if (visibleDivId2 === divId) {
+				div.style.display = "block";
+			} else {
+				div.style.display = "none";
+			}
+		}
+	}
+
+</script>
