@@ -42,6 +42,7 @@ app.use('/movie',movieRouter);
 app.use('/movietheater',movieTheaterRouter);
 app.use('/booking',bookingRouter);
 
+
 // thêm template EJS (sử dụng để code giao diện)
 app.set('views', './Views');
 app.set('view engine','ejs');

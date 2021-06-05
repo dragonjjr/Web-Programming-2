@@ -9,7 +9,12 @@ const MovieTheaterCluster = db.define('MovieTheaterCluster', {
     }, 
   },{
        // Other model options go here
-  });
+});
 
+
+MovieTheaterCluster.getAll = async function()
+{
+    return await MovieTheaterCluster.findAll();
+}
 
 module.exports=MovieTheaterCluster;

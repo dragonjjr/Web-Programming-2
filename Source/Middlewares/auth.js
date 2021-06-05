@@ -20,7 +20,7 @@ module.exports=asyncHandler(async function auth(req,res,next)
             next();
         }).catch(next);
     }
-    else if(passport.user)
+    else if(passport)
     {
         User.findById(passport.user).then(function(user){
             if(user)

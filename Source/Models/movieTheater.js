@@ -33,6 +33,13 @@ const MovieTheater = db.define('MovieTheater', {
        // Other model options go here
   });
 
+MovieTheater.getAll = async function()
+{
+    return await MovieTheater.findAll();
+}
+
+
+
 MovieTheater.belongsTo(mvThCluster);
 mvThCluster.hasMany(MovieTheater);
 
