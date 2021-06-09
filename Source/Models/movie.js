@@ -69,12 +69,12 @@ Movie.getListTopMovie= async function(top)
     return movies;
 };
 
-
 Movie.getNameMovieOfMovieTheater = async function()
 {
     const nameMovie = db.query('SELECT DISTINCT "mv"."Name" , "st"."MovieTheaterId","mv"."id" FROM "Showtimes" AS "st" JOIN "MovieTheaters" AS "mt" ON "st"."MovieTheaterId" = "mt"."id" JOIN "Movies" AS "mv" ON "mv"."id" = "st"."MovieId" GROUP BY "st"."MovieTheaterId", "mv"."Name","mv"."id"',
                                 { type: db.QueryTypes.SELECT });
     return nameMovie;
 }
+
 
 module.exports=Movie;

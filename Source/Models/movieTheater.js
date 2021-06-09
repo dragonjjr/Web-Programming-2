@@ -38,8 +38,6 @@ MovieTheater.getAll = async function()
     return await MovieTheater.findAll();
 }
 
-
-
 MovieTheater.belongsTo(mvThCluster);
 mvThCluster.hasMany(MovieTheater);
 

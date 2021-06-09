@@ -1,0 +1,200 @@
+
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                </span> Dashboard
+              </h3>
+            </div>
+            <!-- Tổng doanh thu -->
+            <div class="row">
+              <div class="col-6 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title" style="text-align: center;">Tổng doanh thu theo tháng</h4>
+                    <div class="form-group row">
+                      <canvas id="barChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title" style="text-align: center;">Tổng doanh thu theo ngày</h4>
+                    <div class="form-group row">
+                      <canvas id="lineChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Thống kê theo cụm rạp -->
+            <div class="row">
+              <div class="col-7 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title" style="text-align: center;">Thống kê doanh thu theo cụm rạp</h4>
+                    <div class="form-group row">
+                      <div class="col-5">
+                        <input class="form-control" type="date" value="2021-06-06" id="from-date">
+                      </div>
+                      <label for="from-date" class="col-2 col-form-label">Đến</label>
+                      <div class="col-5">
+                        <input class="form-control" type="date" value="2021-06-06" id="from-date">
+                      </div>
+                    </div>
+                    <!-- Bảng  -->
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Tên cụm </th>
+                            <th> Vé bán được </th>
+                            <th> Doanh thu </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td> 1 </td>
+                            <td> Hồ Chí Minh </td>
+                            <td> 50000 </td>
+                            <td> 5000000 </td>
+                          </tr>
+                          <tr>
+                            <td> 2 </td>
+                            <td> Hà Nội</td>
+                            <td> 50000 </td>
+                            <td> 5000000 </td>
+                          </tr>
+                          <tr>
+                            <td> 3 </td>
+                            <td> Đà Nẵng </td>
+                            <td> 50000 </td>
+                            <td> 5000000 </td>
+                          </tr>
+                        </tbody>
+                      </table>               
+                    </div>
+                    <!-- --------------------------- -->
+                    <!-- Phân trang -->
+                      <ul class="pagination" style="margin-top: 1rem; float: right;">
+                        <li class="page-item">
+                          <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item">
+                          <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </li>
+                      </ul>
+                      <!-- ------------------ -->
+                  </div>
+                </div>
+              </div>
+              <!-- Biểu đồ -->
+              <div class="col-md-5 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Biểu đồ</h4>
+                    <canvas id="doughnutChart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <!-- ------------------------- -->
+            </div>
+            <!-- --------------------------------------- -->
+            <!-- Thống kê theo phim -->
+            <div class="row">
+              <div class="col-7 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title" style="text-align: center;">Thống kê doanh thu theo phim</h4>
+                    <div class="form-group row">
+                      <div class="col-5">
+                        <input class="form-control" type="date" value="2021-06-06" id="from-date">
+                      </div>
+                      <label for="from-date" class="col-2 col-form-label">Đến</label>
+                      <div class="col-5">
+                        <input class="form-control" type="date" value="2021-06-06" id="from-date">
+                      </div>
+                    </div>
+                    <!-- Bảng -->
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Tên phim </th>
+                            <th> Vé bán được </th>
+                            <th> Doanh thu </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td> 1 </td>
+                            <td> Avengers: Endgame </td>
+                            <td> 50000 </td>
+                            <td> 5000000 </td>
+                          </tr>
+                          <tr>
+                            <td> 2 </td>
+                            <td> Frozen 2</td>
+                            <td> 50000 </td>
+                            <td> 5000000 </td>
+                          </tr>
+                          <tr>
+                            <td> 3 </td>
+                            <td> One piece </td>
+                            <td> 50000 </td>
+                            <td> 5000000 </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- ----------------- -->
+                    <!-- Phân trang -->
+                      <ul class="pagination" style="margin-top: 1rem; float: right;">
+                        <li class="page-item">
+                          <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                          <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </li>
+                      </ul>
+                      <!-- ------------------- -->
+                  </div>
+                </div>
+              </div>
+              <!-- Biểu đồ -->
+              <div class="col-md-5 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Biểu đồ</h4>
+                    <canvas id="pieChart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <!-- ----------------------- -->
+            </div>
+          </div>
+          <!-- -->
+         

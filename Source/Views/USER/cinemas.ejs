@@ -80,7 +80,7 @@
 							<% if(timeMovie) {%>
 								<% timeMovie.forEach(elementTimeMovie=>{ %>
 									<% if(elementTimeMovie.MovieTheaterId==elementnameMovie.MovieTheaterId && elementTimeMovie.id == elementnameMovie.id){ %>
-										<li class="nav-item"><a href="#" class="nav-link"><%= elementTimeMovie.BeginAt %></a></li>
+										<li class="nav-item"><a href="/booking?id=<%= elementnameMovie.id %>" class="nav-link"><%= elementTimeMovie.BeginAt %></a></li>
 									<% } %>
 							<% })} %>
 						</ul>

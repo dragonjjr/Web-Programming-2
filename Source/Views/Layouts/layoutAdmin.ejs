@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%- title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/styleAdminFront.css">
+</head>
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper">
+        <!-- ---Menu bên phải-- -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+            <li class="nav-item nav-profile">
+                <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                    <img src="/images/face1.jpg" alt="profile">
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                    <span class="font-weight-bold mb-2">ADMIN</span>
+                </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/index">
+                <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/cinemamanagement">
+                <span class="menu-title">Cinema Management</span>
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/moviemanagement">
+                <span class="menu-title">Movie Management</span>
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/auth/logout">
+                    <span class="menu-title">Sign Out</span>
+                    
+                </a>
+            </li>
+            
+            </ul>
+        </nav>
+    <!-- ------------ -->
+
+    <%-body%>
+
+        <!-- footer -->
+        <footer class="footer">
+        <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © CINEMA+</span>
+            
+        </div>
+        </footer>
+        <!--------- -->
+    </div>
+</div>
+
+    </div>
+    <!-- jQuery và Chart.js -->
+    <script src="/js/vendor.bundle.base.js"></script>
+    <script src="/js/Chart.min.js"></script>
+    <script src="/js/chart.js"></script>
+  </body>
+</html>

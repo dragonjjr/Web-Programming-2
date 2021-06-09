@@ -21,6 +21,11 @@ const Showtime = db.define('Showtime', {
        // Other model options go here
   });
 
+Showtime.belongsTo(Movie);
+Movie.hasMany(Showtime);
+
+Showtime.belongsTo(MovieTheater);
+MovieTheater.hasMany(Showtime);
 
 Showtime.getTimeMovieOfMovieTheater = async function()
 {
@@ -29,10 +34,24 @@ Showtime.getTimeMovieOfMovieTheater = async function()
     return timeMovie;
 }
 
-Showtime.belongsTo(Movie);
-Movie.hasMany(Showtime);
+Showtime.getListByMovieId=async function(movieId)
+{
+    const showtimes = await db.query('SELECT "st"."id" AS "ShowtimeId","mvtc"."Name" AS "MvThtClusterName", "mvtc"."id" AS "MvThtClusterId","mvt"."Name" AS "MvThtName", "mvt"."id" AS "MvThtId", "st"."BeginAt" AS "Time", "st"."PriceTicket" AS "Price" FROM "Showtimes" AS st JOIN "MovieTheaters" AS mvt ON "st"."MovieTheaterId"="mvt"."id" JOIN "MovieTheaterClusters" AS mvtc ON "mvt"."MovieTheaterClusterId"="mvtc"."id" WHERE "st"."MovieId"=?', 
+    { 
+        replacements: [movieId], //mảng danh sách tham số
+        type: db.QueryTypes.SELECT 
+    });
+    return showtimes;
+}
 
-Showtime.belongsTo(MovieTheater);
-MovieTheater.hasMany(Showtime);
+Showtime.getByShowtimeId=async function(showtimeId)
+{
+    const showtime = await db.query('SELECT "st"."BeginAt" AS "BeginAt", "mv"."Name" AS "NameMovie", "mvt"."Name" AS "NameMvt","mvt"."Address" AS "AddressMvt" FROM "Showtimes" AS st JOIN "Movies" AS mv ON "st"."MovieId"="mv"."id" JOIN "MovieTheaters" AS mvt ON "mvt"."id"="st"."MovieTheaterId" WHERE "st"."id"=?', 
+    { 
+        replacements: [showtimeId], //mảng danh sách tham số
+        type: db.QueryTypes.SELECT 
+    });
+    return showtime;
+}
 
 module.exports=Showtime;

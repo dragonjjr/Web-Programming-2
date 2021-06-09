@@ -4,6 +4,8 @@ const Movie=require('../../Models/movie');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const moment = require('moment');
+
+
 router.use(function (req,res,next){
     res.locals.title='Detail movie';
     next();

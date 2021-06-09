@@ -1,0 +1,375 @@
+<div class="container order">
+    <div class="row order-content">
+        <div class="col-sm-8 col-xs-12 seat_content ph0">
+            <h2>order a ticket</h2>
+            <h3>Movie: <%- nameMovie %></h3>
+            <% if(showtimes.length>0) { %>
+            <div class="entry-order-content">
+                <form id="msform" name="msform">                
+                    <!-- fieldsets -->
+                    <fieldset>
+                        <div class="wpc-content">
+                            <h3>location</h3>
+                            <div class="select-section">
+                                <select name="location" id="location" onchange="if (this.selectedIndex) changeLocation()">
+                                    <option value="-1"></option>
+                                   <% var h = new Object(); 
+                                      for(var item of showtimes) { %>
+                                    <%  var k=item.MvThtClusterId;
+                                        if(!h.hasOwnProperty(k)){ %>
+                                            <option value="<%- item.MvThtClusterId %>" id="location<%- item.MvThtClusterId %>"><%- item.MvThtClusterName %></option>
+                                        <%  h[k]=1; }
+                                    } %>
+                                </select>
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </div>
+                            <h3>cinema</h3>
+                            <div class="select-section">
+                                <select name="cinema" id="cinema" onchange="changeCinema()">
+                                </select>
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </div>        
+                            <h3 class="mt3">TIME</h3>
+                            <ul class="order-date" id="TimeListSt">
+                            </ul>
+                        </div>           
+                         <!--error-->
+                         <p style="color: red;" id="error"></p>
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+                    <fieldset class="seat-content">
+                        <div class="wpc-content">
+                            <h3 class="seat_title"></h3>
+                            <!--Vị trí ghế xem file script.min.js và package.js-->
+                            <div id="seat-map"></div>
+                            <div id="legend"></div>
+                        </div>
+                        <input type="button" name="previous" class="action-button previous" value="Previous" />
+                        <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                        <p style="color: red;" id="error1"></p>
+                    </fieldset>
+                </form>
+            </div>
+            <% } else{ %>
+                <p style="color: red;">Don't have any showtime for this movie</p>
+            <% } %>
+        </div>
+        <div class="col-sm-4 col-xs-12 order_sidebar ph0">
+            <h2>Your Information</h2>
+            <div class="order-details">
+                <span> Location:</span>
+                <p id="selected-location"></p>
+                <span> Cinema:</span>
+                <p id="selected-cinema"></p>
+                <span id="selected-time">Time:</span><br><br>         
+                <span id="selected-price">Price:</span><br><br>
+                <span>Seat: </span>
+                <ul id="selected-seats"></ul>
+                <div class="count">Tickets: <span id="counter">0</span></div>
+                <div class="price"><b>TOTAL:</b> $<span id="total">0</span></div>
+            </div>
+            <!-- <a href="#" class="close-window"><i class="fa fa-times"></i></a> -->
+        </div>
+    </div>
+</div>
+
+<!-------------------------------------------------------------->
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<!---------------- Jquery --------------->
+<script type="text/javascript">
+
+    function changeLocation() {
+
+        var id = document.getElementById("location").value;
+        var name = document.getElementById("location"+id).innerText;
+        
+        //reset các option
+        $('#cinema').find('option').remove().end();
+        $('#cinema').append('<option value="-1"></option>');
+        //thêm option của cinema
+        var h=new Object();
+       ' <% for(var item of showtimes) { %>'
+            var k='<%- item.MvThtId %>';
+            if ('<%- item.MvThtClusterId %>'==id && !h.hasOwnProperty(k)) 
+            {
+                $('#cinema').append('<option value="<%- item.MvThtId %>" id="cinema<%- item.MvThtId %>"><%- item.MvThtName %></option>');
+                h[k]=1;
+            }
+       '<% } %>'
+           
+       //info
+       ShowtimeIdChoosed=null;
+       $('#selected-time').html('Time:');
+       $('#selected-price').html('Price:');
+       $('#selected-cinema').html('');
+       $('#selected-location').html(name);
+
+    }
+
+    function changeCinema() {
+
+        $('#TimeListSt').html('');
+        var id = document.getElementById("cinema").value;
+        var name = document.getElementById("cinema"+id).innerText;
+
+
+        //hiển thị danh sách giờ xuất chiếu
+        var h=new Object();
+        ' <% for(var item of showtimes) { %>'
+            if ('<%- item.MvThtId %>'== id) 
+            {
+                var timeOg =new Date('<%- item.Time %>');
+                var time=timeOg.getDate()+"/"+(timeOg.getMonth()+1)+"/"+timeOg.getFullYear()+" - "+timeOg.getHours()+":"+timeOg.getMinutes();
+                //time=time.format( 'MMM-DD-YYYY');
+                $('#TimeListSt').append('<li><a onclick="clickTime(<%- item.ShowtimeId %>,\''+time+'\',<%- item.Price %>)"><i>'+time+'</i></a></li>');
+            }
+       '<% } %>'
+
+        //info
+        ShowtimeIdChoosed=null;
+        $('#selected-time').html('Time:');
+        $('#selected-price').html('Price:');
+        $('#selected-cinema').html(name);
+        
+    }
+
+    function clickTime(showtimeId,time,price)
+    {
+
+        ShowtimeIdChoosed=showtimeId;
+        priceTicket=price;
+        //info
+        $('#error').html('');
+        $('#selected-time').html('Time: '+time);
+        $('#selected-price').html('Price: $'+priceTicket);
+    }
+</script>
+
+
+<!--===============================SEAT ORDER=======================================-->
+
+<script type="text/javascript" src="/js/packages.min.js"></script>
+
+<script type="text/javascript">
+//info booking
+var bookingInfo={
+    priceTotal: "",
+    showtimeId: ""
+}
+
+//info ticket
+var ShowtimeIdChoosed=null;
+var priceTicket=0;
+var listTicket=null;
+var seatsUnvaliable=[];
+
+// tăng tổng tiền
+    ! function (a) {
+    "use strict";
+    function b(a) {
+        var b = 0;
+        e=priceTicket;
+        return a.find("selected").each(function () {
+            b += e
+        }), b
+    }
+
+// --------POPUP ORDER AND BUTTON-------------
+    a(".order_btn").magnificPopup({
+        type: "inline",
+        removalDelay: 500,
+        mainClass: "mfp-zoom-in",
+        callbacks: {
+            beforeOpen: function () {
+                this.st.mainClass = this.st.el.attr("data-effect")
+            }
+        },
+        midClick: !0
+    }), a(".close-window").on("click", function () {
+        a.magnificPopup.close()
+    }), a(".entry-order-content").each(function () {
+        var b, c, d, e, f, g, h;
+        a(".next").on("click", function () {
+            if(ShowtimeIdChoosed!=null)
+            { 
+                //-----------JSON get list ticket booked------------
+                 //ajax call
+                 $.ajax({
+                    type: "GET",
+                    url: "/booking/getTicketsBooked?showtimeId="+ShowtimeIdChoosed,
+                    contentType: "application/json",
+                    //data: JSON.stringify({showtimeId : ShowtimeIdChoosed}),
+                    //dataType: 'json',
+                    success: function(data){
+                        if(data)
+                        {
+                            const ticketsBooked=JSON.parse(data);
+                            // GHẾ ĐÃ CHỌN--------------
+                            // R3_S11 = Row 3_Seat 11
+                           for(var item of ticketsBooked)
+                           {
+                               const seat = item.IndexRow+"_"+item.IndexColumn;
+                               diagram.get([seat]).status("unavailable");
+                               seatsUnvaliable.push(seat);
+                           }
+                        }
+                        else
+                        {
+                            alert("Somthing error !!!");
+                        }
+                    }
+                });    
+                //--------------------------------------------------
+
+                return !h && (h = !0, b = a(this).parent(), c = a(this).parent().next(), c.show(), void b.animate({
+                    opacity: 0
+                }, {
+                    step: function (a, d) {
+                        g = 1 - .2 * (1 - a), e = 50 * a + "%", f = 1 - a, b.css({
+                            transform: "scale(" + g + ")"
+                        }), c.css({
+                            left: e,
+                            opacity: f
+                        })
+                    },
+                    duration: 800,
+                    complete: function () {
+                        b.hide(), h = !1
+                    },
+                    easing: "easeInOutBack"
+                }))
+            }
+            else
+            {
+                $('#error').html('You have not selected the showtime');
+            }
+          
+        }), a(".previous").on("click", function () {
+
+            //-------------reset selected seats
+            for(var item of listTicket)
+            {
+                const id=item.iRow+"_"+item.iColumn;
+                diagram.get([id]).status("available");
+            }
+            for(var item of seatsUnvaliable)
+            {
+                diagram.get([item]).status("available");
+            }
+            
+            listTicket.splice(0,listTicket.length);
+            $('#selected-seats').html('');
+            $("#counter").html('0');
+            $("#total").html('0');
+            //-----------------------
+            return !h && (h = !0, b = a(this).parent(), d = a(this).parent().prev(), d.show(), void b.animate({
+                opacity: 0
+            }, {
+                step: function (a, c) {
+                    g = .8 + .2 * (1 - a), e = 50 * (1 - a) + "%", f = 1 - a, b.css({
+                        left: e
+                    }), d.css({
+                        transform: "scale(" + g + ")",
+                        opacity: f
+                    })
+                },
+                duration: 800,
+                complete: function () {
+                    b.hide(), h = !1
+                },
+                easing: "easeInOutBack"
+            }))
+        }), //--------------------SUBMIT------------------------------ 
+        a(".submit").on("click", function () {
+
+            if(listTicket.length>0)
+            {
+                bookingInfo.priceTotal=$('#total').text();
+                bookingInfo.showtimeId=ShowtimeIdChoosed;
+                
+                //----------------------------------ajax call-------------------------------
+                 $.ajax({
+                    type: "POST",
+                    url: "/booking",
+                    contentType: "application/json",
+                    data: JSON.stringify({tickets : listTicket,bookingInfo: bookingInfo}),
+                    dataType: 'json',
+                    success: function(data){
+                        if(data=="OK")
+                        {
+                            location.replace('/booking/success');
+                        }
+                        else
+                        {
+                            alert("Somthing error !!!");
+                        }
+                        //console.log(data);
+                    }
+                });
+            }
+            else
+            {
+                $('#error1').html('You have not chosen ticket');
+            }
+            //alert(ShowtimeIdChoosed);
+            return !1
+        })
+    });
+
+// --------SEAT ORDER-------------
+var e; //Giá vé 
+var diagram;// sơ đồ ghế phòng chiếu
+
+a(document).ready(function () {
+    listTicket=[];
+
+    //execute
+    var c = a("#selected-seats"),
+        d = a("#counter"),
+        f = a("#total")
+    diagram = a("#seat-map").seatCharts({
+            map: ["aaaaaaa_aaaaaaa_aaaaaaa", "aaaaaaa_aaaaaaa_aaaaaaa", "aaaaaaa_aaaaaaa_aaaaaaa", "aaaaaaa_aaaaaaa_aaaaaaa", "aaaaaaa_aaaaaaa_aaaaaaa"],
+            naming: {
+                top: !1,
+                getLabel: function (a, b, c) {
+                    return c
+                }
+            },
+            legend: {
+                node: a("#legend"),
+                items: [
+                    ["a", "available", "Available"],
+                    ["a", "unavailable", "Unavailable"],
+                    ["a", "selected", "selected"]
+                ]
+            },
+            click: function () {
+                $('#error1').html('');
+
+                const row=this.settings.row + 1;
+                const column=this.settings.label;
+                const idSeat="R"+(row) + " S" + column;
+
+                var index=listTicket.map(function(e) { return e.iSeat; }).indexOf(idSeat);                  
+                if(index==-1)
+                {
+                    var ticket={
+                        iSeat: idSeat,
+                        iRow: row,
+                        iColumn: column,
+                        price: priceTicket
+                    }
+                    listTicket.push(ticket);
+                }
+                else
+                {
+                    listTicket.splice(index,1);
+                }
+                                        
+                return "available" == this.status() ? (a("<li>" + idSeat + "</li>").attr("id", "cart-item-" + this.settings.id).data("seatId", this.settings.id).appendTo(c), d.text(diagram.find("selected").length + 1), f.text(b(diagram) + e), "selected") : "selected" == this.status() ? (d.text(diagram.find("selected").length - 1), f.text(b(diagram) - e), a("#cart-item-" + this.settings.id).remove(), "available") : "unavailable" == this.status() ? "unavailable" : this.style()
+            }
+        });
+});
+   
+}(jQuery);  
+</script>

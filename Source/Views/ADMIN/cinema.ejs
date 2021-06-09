@@ -1,0 +1,318 @@
+
+<!-- -----------Main----- -->
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                </span> Cinema Management
+            </h3>
+        </div>
+        <!--------Cụm rạp------>
+        <div class="row">
+            <div class="col-md-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="text-align: center;">Danh sách cụm rạp</h4>
+                        <!--------- Bảng----- -->
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th> # </th>
+                                        <th> Tên cụm </th>                               
+                                        <th> Sửa </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input class="form-check-input" type="checkbox" value="" id="">
+                                        </td>
+                                        <td> 1 </td>
+                                        <td> Hồ Chí Minh </td>                                      
+                                        <td>
+                                            <button type="button" class="btn btn-inverse-info btn-icon" data-toggle="modal" data-target="#edit-cinema-area">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+    
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                                        <td> 2 </td>
+                                        <td> Hà Nội</td>
+                                        <td>
+                                            <button type="button" class="btn btn-inverse-info btn-icon" data-toggle="modal" data-target="#edit-cinema-area">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                                        <td> 3 </td>
+                                        <td> Đà Nẵng </td>
+                                        <td>
+                                            <button type="button" class="btn btn-inverse-info btn-icon" data-toggle="modal" data-target="#edit-cinema-area"> 
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- -------------------- -->
+                                <!------- POPUP sửa cụm rạp--- -->
+                                <div class="modal fade" id="edit-cinema-area" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="">Sửa cụm rạp</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="form-group">
+                                            <label for="cinema-arena-name" class="col-form-label">Tên cụm rạp:</label>
+                                            <input type="text" class="form-control" id="cinema-arena-name" value="Hồ Chí Minh">
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-dark">Save</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <!-------------------------------->
+                        </div>
+                        <!-- Button cụm rạp -->
+                        <div class="row">
+                            <div class="col-6 grid-margin" style="margin-top: 0.5rem;">
+                                <button type="button" class="btn btn-gradient-dark" data-toggle="modal" data-target="#add-cinema-area"><span><i class="fa fa-plus" aria-hidden="true"></i></span>Thêm</button>
+                                <button type="button" class="btn btn-inverse-danger "> <span><i class="fa fa-trash" aria-hidden="true"></i></span> Xoá lựa chọn</button>
+                            </div>
+                            
+                            <!-- ---------------------- -->
+                            <!------- POPUP thêm cụm rạp--- -->
+                            <div class="modal fade" id="add-cinema-area" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="">Thêm cụm rạp</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="form-group">
+                                            <label for="cinema-arena-namee" class="col-form-label">Tên cụm rạp:</label>
+                                            <input type="text" class="form-control" id="cinema-arena-name">
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-dark">Add</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <!-------------------------------->
+                                <!-- ----------Phân trang----- -->
+                            <div class="col-6 grid-margin">
+                                <ul class="pagination" style="margin-top: 1rem; float: right;">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- ------------------------------------ -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ---------Rạp------- -->
+        <div class="row">
+            <div class="col-md-12 grid-margin ">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="text-align: center;">Danh sách rạp</h4>
+                        <!-- Chọn cụm -->
+                        <div class="select" style="text-align: center;">
+                            <select class="custom-select">
+                                <option selected>Chọn cụm rạp</option>
+                                <option value="1">Hồ Chí Minh</option>
+                                <option value="2">Hà Nội</option>
+                                <option value="3">Đà Nẵng</option>
+                                </select>
+                        </div>
+                        
+                            <!-- ----------- -->
+                            <!-- Bảng -->
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th> # </th>
+                                        <th> Tên rạp </th>
+                                        <th> Địa chỉ </th>
+                                        <th> Sửa </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                                        <td> 1 </td>
+                                        <td> Cinema Q1 </td>
+                                        <td> 1 Nguyễn Thị Minh Khai</td>
+                                        <td>
+                                            <button type="button" class="btn btn-inverse-info btn-icon" data-toggle="modal" data-target="#edit-cinema">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                                        <td> 2 </td>
+                                        <td> Cinema Q5</td>
+                                        <td> 2 Nguyễn Văn Cừ</td>
+                                        <td>
+                                            <button type="button" class="btn btn-inverse-info btn-icon" data-toggle="modal" data-target="#edit-cinema">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                                        <td> 3 </td>
+                                        <td> Cinema Thủ Đức </td>
+                                        <td> 3 Kha Vạn Cân</td>
+                                        <td>
+                                            <button type="button" class="btn btn-inverse-info btn-icon" data-toggle="modal" data-target="#edit-cinema">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!------- POPUP sửa rạp--- -->
+                            <div class="modal fade" id="edit-cinema" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="">Sửa rạp phim</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="form-group">
+                                            <label for="cinema-arena-name" class="col-form-label">Tên rạp:</label>
+                                            <input type="text" class="form-control" id="cinema-arena-name" value="Cinema Q1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cinema-arena-address" class="col-form-label">Địa chỉ rạp:</label>
+                                            <input type="text" class="form-control" id="cinema-arena-address" value="1 Nguyễn Thị Minh Khai">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-dark">Save</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <!-------------------------------->
+                        </div>
+                        <!-- -------------------------- -->
+                        <div class="row">
+                            <div class="col-6 grid-margin" style="margin-top: 0.5rem;">
+                                <button type="button" class="btn btn-gradient-dark"  data-toggle="modal" data-target="#add-cinema"><span><i class="fa fa-plus" aria-hidden="true"></i></span>Thêm</button>
+                                <button type="button" class="btn btn-inverse-danger "> <span><i class="fa fa-trash" aria-hidden="true"></i></span> Xoá lựa chọn</button>
+                            </div>
+                                <!------- POPUP thêm rạp--- -->
+                                <div class="modal fade" id="add-cinema" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="">Thêm rạp phim</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="form-group">
+                                            <label for="cinema-arena-name" class="col-form-label">Tên rạp:</label>
+                                            <input type="text" class="form-control" id="cinema-arena-name" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cinema-arena-address" class="col-form-label">Địa chỉ rạp:</label>
+                                            <input type="text" class="form-control" id="cinema-arena-address" >
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-dark">Add</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <!-------------------------------->
+                                <!-------- Phân trang--- -->
+                            <div class="col-6 grid-margin">
+                                <ul class="pagination" style="margin-top: 1rem; float: right;">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- ----------------------- -->
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+              

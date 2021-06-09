@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize');
-const sequery = require('sequelize-raw-query');
 const db=require('./database');
 const User=require('./users');
 const Showtime=require('./showtime');
@@ -29,15 +28,15 @@ User.hasMany(Booking);
 Booking.belongsTo(Showtime);
 Showtime.hasMany(Booking);
 
-
-Booking.add = async function(date,priceTotal,userId,showtimeId) {
+Booking.createBooking = async function(id,date,priceTotal,showtimeId,userId) {
     await Booking.create({
-             Date: date,
-             PriceTotal: priceTotal,
-             UserId: userId,
-             ShowtimeId: showtimeId
-         });
- }
+        ID: id,
+        Date: date,
+        PriceTotal: priceTotal,
+        ShowtimeId: showtimeId,
+        UserId: userId
+    });
+}
 
  Booking.getListBookingOfUser= async function(userId)
  {
