@@ -43,9 +43,50 @@ Movie.createMovie = async function(name,releaseDate,poster,time,introduce,traile
         });
 }
 
+Movie.deleteById = async function(id) {
+    await Movie.destroy({
+        where: {
+          id
+        }
+      });
+ }
+
 Movie.findById= async function(id)
 {
     return await Movie.findByPk(id);
+};
+
+Movie.getAll = async function()
+{
+    return await Movie.findAll();
+}
+
+Movie.getCount = async function()
+{
+    return await db.query('SELECT COUNT(*) FROM "Movies"', 
+    { 
+        type: db.QueryTypes.SELECT 
+    });
+}
+
+Movie.getListMovie = async function(pageIndex,pageSize)
+{
+    const offset=(pageIndex-1)*pageSize;
+    const movies = await db.query('SELECT * FROM "Movies" ORDER BY "ReleaseDate" OFFSET ? LIMIT ?', 
+            { 
+                replacements: [offset,pageSize], //mảng danh sách tham số
+                type: db.QueryTypes.SELECT 
+            });
+    return movies;
+}
+
+Movie.getListMovieInShowtime= async function()
+{
+    const movies = await db.query('SELECT DISTINCT "mv"."id","mv"."Name","mv"."PosterImage","mv"."Trailer" FROM "Movies" AS mv JOIN "Showtimes" AS st ON "mv"."id"="st"."MovieId" AND "st"."BeginAt">NOW() ', 
+            { 
+                type: db.QueryTypes.SELECT 
+            });
+    return movies;
 };
 
 Movie.getListNewMovie= async function(top)
@@ -61,7 +102,7 @@ Movie.getListNewMovie= async function(top)
 Movie.getListTopMovie= async function(top)
 {
     //lấy danh sách các phim bán được nhiều vé nhất
-    const movies = await db.query('SELECT "mv"."id", COUNT(*) AS "SumTicket" FROM "Movies" AS mv JOIN "Showtimes" AS st ON "mv"."id"="st"."MovieId" JOIN "Bookings" AS bk ON "st"."id"="bk"."ShowtimeId" JOIN "Tickets" AS tk ON "tk"."BookingID"="bk"."ID" GROUP BY "mv"."id", "mv"."Name", "mv"."ReleaseDate", "mv"."PosterImage", "mv"."Time", "mv"."Trailer" ORDER BY "SumTicket" DESC LIMIT ?',
+    const movies = await db.query('SELECT DISTINCT "mv"."id","mv"."Name","mv","PosterImage","mv"."Trailer", COUNT(*) AS "SumTicket" FROM "Movies" AS mv JOIN "Showtimes" AS st ON "mv"."id"="st"."MovieId" JOIN "Bookings" AS bk ON "st"."id"="bk"."ShowtimeId" JOIN "Tickets" AS tk ON "tk"."BookingID"="bk"."ID" GROUP BY "mv"."id", "mv"."Name", "mv"."ReleaseDate", "mv"."PosterImage", "mv"."Time", "mv"."Trailer" ORDER BY "SumTicket" DESC LIMIT ?',
                         { 
                             replacements: [top],
                             type: db.QueryTypes.SELECT 

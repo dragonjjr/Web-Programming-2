@@ -1,0 +1,480 @@
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                </span> Showtime Management
+            </h3>
+        </div>
+ <!-- ---------Suất chiếu---------->
+ <div class="row">
+    <div class="col-md-12 grid-margin ">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="text-align: center;">Danh sách suất chiếu</h4>
+                <!-- Chọn cụm -->
+                <div class="select" style="text-align: center;">
+                    <label>Chọn cụm rạp: </label>
+                    <select class="custom-select" id="cb-showtime-location-1" onchange="changeLocation('1')">
+                        <option value="all" id="location_0-1">Tất cả</option>
+                        <% for(var item of Locations){ %>                        
+                            <option value="<%- item.id %>" id="location_<%-item.id%>-1"><%- item.Name %></option>
+                         <%}%>
+                    </select>
+                    &emsp;
+                    <label>Chọn rạp phim: </label>
+                    <select class="custom-select" id="cb-showtime-cinema-1" onchange="changeCinema()">
+                        <option value="all" id="cinema_0-1">Tất cả</option>
+                    </select>
+                </div>
+                  <!-- ----------- -->
+                  <!-- Bảng -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th> Tên phim</th>
+                                <th> Ngày chiếu</th>
+                                <th> Bắt đầu </th>
+                                <th> Kết thúc</th>
+                                <th> Giá vé</th>
+                                <th> Sửa </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <% for(var item of Showtimes){
+                            var timeOgBegin =new Date(item.BeginAt);
+                            var timeOgEnd= new Date(item.EndAt);
+                            var date=timeOgBegin.getDate()+"/"+(timeOgBegin.getMonth()+1)+"/"+timeOgBegin.getFullYear();
+                            var timeBegin= timeOgBegin.getHours()+":"+timeOgBegin.getMinutes();
+                            var timeEnd=timeOgEnd.getHours()+":"+timeOgEnd.getMinutes(); %>
+                            
+                            <tr>
+                                <td><input class="form-check-input" type="checkbox" value="" id="" onclick="chooseShowtime('<%-item.id%>')"></td>
+                                <td> <%- item.NameMovie %> </td>
+                                <td> <%- date %></td>
+                                <td> <%- timeBegin %> </td>
+                                <td> <%- timeEnd %></td>
+                                <td> <%- item.PriceTicket %> $</td>
+                                <td>
+                                    <button type="button" class="btn btn-inverse-info btn-icon" data-toggle="modal" data-target="#edit-showtime" onclick="PopupEditShowtime('<%- item.id %>')">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>
+                                    
+                                </td>
+                            </tr>
+                           <%}%>
+                        </tbody>
+                    </table>
+                    <!------- POPUP sửa suất chiếu--- -->
+                    <div class="modal fade" id="edit-showtime" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="">Sửa suất chiếu</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <div id="edit-showtime-name">Tên phim:</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-showtime-date" class="col-form-label">Ngày chiếu:</label>
+                                    <input type="date" class="form-control" id="edit-showtime-date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-showtime-start" class="col-form-label">Bắt đầu:</label>
+                                    <input type="time" class="form-control" id="edit-showtime-start">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-showtime-end" class="col-form-label">Kết thúc:</label>
+                                    <input type="time" class="form-control" id="edit-showtime-end">
+                                </div>
+                                <div class="form-group">
+                                  <label for="edit-showtime-price" class="col-form-label">Giá vé:</label>
+                                  <input type="text" class="form-control" id="edit-showtime-price">
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-dark" onclick="UpdateShowtime()">Save</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-------------------------------->
+                </div>
+                <!-- -------------------------- -->
+                <div class="row">
+                    <!-- -----Button----- -->
+                    <div class="col-6 grid-margin" style="margin-top: 0.5rem;">
+                        <button type="button" class="btn btn-gradient-dark"  data-toggle="modal" data-target="#add-showtime">Thêm</button>
+                        <button type="button" class="btn btn-inverse-danger" onclick="DeleteShowtimes()"> <span><i class="fa fa-trash" aria-hidden="true"></i></span> Xoá lựa chọn</button>
+                    </div>
+                      <!------- POPUP thêm suất chiếu--- -->
+                    <div class="modal fade" id="add-showtime" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="">Thêm suất chiếu</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <select class="custom-select" style="width: 100%;" id="cb-showtime-location-2" onchange="if (this.selectedIndex) changeLocation('2')">
+                                    <option>Chọn cụm rạp</option>
+                                    <% for(var item of Locations){%>                                        
+                                      <option value="<%- item.id %>" id="location_<%-item.id%>-2"><%- item.Name %></option>
+                                    <%}%>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <select class="custom-select" style="width: 100%;" id="cb-showtime-cinema-2">
+                                    <option>Chọn rạp phim</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <select class="custom-select" style="width: 100%;" id="cb-showtime-movie-2">
+                                    <option>Chọn phim</option>
+                                    <% for(var item of AllMovie){%>
+                                      <option value="<%- item.id %>"><%- item.Name %></option>
+                                    <%}%>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add-showtime-date" class="col-form-label">Ngày chiếu:</label>
+                                    <input type="date" class="form-control" id="add-showtime-date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="add-showtime-start" class="col-form-label">Bắt đầu:</label>
+                                    <input type="time" class="form-control" id="add-showtime-start" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="add-showtime-end" class="col-form-label">Kết thúc:</label>
+                                    <input type="time" class="form-control" id="add-showtime-end" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="add-showtime-price" class="col-form-label">Giá vé:</label>
+                                  <input type="text" class="form-control" id="add-showtime-price" >
+                              </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-dark" onclick="AddShowtime()">Add</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-------------------------------->
+                      <!-------- Phân trang--- -->
+                    <div class="col-6 grid-margin">
+                        <ul class="pagination" style="margin-top: 1rem; float: right;">
+                          <% if(pageIndex>1){ %>
+                            <li class="page-item">
+                                <a class="page-link" href="/admin/showtimeManagement?pageIndex=<%-pageIndex-1%>&locationid=<%-locationId%>&cinemaid=<%-cinemaId%>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                          <% } %>
+
+                          <%for (let i = 1; i <= pageShowtime; i++){
+                            if(i==pageIndex){%>
+                              <li class="page-item"><a style="background-color: lightgray;" class="page-link" href="/admin/showtimemanagement?pageIndex=<%-i%>"><%-i%></a></li>
+                            <%} else {%>
+                              <li class="page-item"><a class="page-link" href="/admin/showtimemanagement?pageIndex=<%-i%>&locationid=<%-locationId%>&cinemaid=<%-cinemaId%>"><%-i%></a></li>
+                          <%}}%> 
+
+                          <% if(pageIndex < pageShowtime){ %>
+                            <li class="page-item">
+                                <a class="page-link" href="/admin/showtimeManagement?pageIndex=<%-parseInt(pageIndex) + 1%>&locationid=<%-locationId%>&cinemaid=<%-cinemaId%>" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                          <% } %>
+                        </ul>
+                    </div>
+                    <!-- ----------------------- -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------------------------- javascript ---------------------------->
+<script type="text/javascript">
+
+window.onload = function() {
+  const locationId='<%-locationId %>';
+  const cinemaId='<%- cinemaId %>';
+  
+  if(locationId!='all')
+  {
+    $("#location_"+locationId+'-1').attr("selected", "selected");
+    $.ajax({
+        type: "GET",
+        url: "/admin/showtimemanagement/getlistcinema?locationid="+locationId,
+        contentType: "application/json",
+        success: function(data){
+            if(data && data!="F")
+            {
+                //reset option
+                $('#cb-showtime-cinema-1').find('option').remove().end();
+                $('#cb-showtime-cinema-1').append('<option value="all" id="cinema_0-1">Tất cả</option>');
+                const listCinema=JSON.parse(data);
+
+                for(var item of listCinema)
+                {
+                  const id=item.id;
+                  const name=item.Name;
+                  $('#cb-showtime-cinema-1').append('<option value="'+id+'" id="cinema_'+id+'-1">'+name+'</option>');
+                }
+                if(cinemaId!='all')
+                {
+                  // console.log(cinemaId);
+                  // alert(document.getElementById("cinema_"+cinemaId+'-1').value);
+                  $("#cinema_"+cinemaId+"-1").attr("selected", "selected");
+                }
+                else
+                {
+                  $("#cinema_0-1").attr("selected", "selected");
+                }
+            }
+            else
+            {
+                alert("Somthing error !!!");
+            }
+        }
+      });    
+  }
+  else
+  {
+    $("#location_0-1").attr("selected", "selected");
+    $("#cinema_0-1").attr("selected", "selected");
+  }
+};
+
+var listChooseShowtime=new Object();
+var idShowtimeEdit=null;
+
+function chooseShowtime(id)
+{
+    if(!listChooseShowtime.hasOwnProperty(id))
+        listChooseShowtime[id]=1; //choosen
+    else
+    {
+        delete listChooseShowtime[id];
+    }
+}
+
+function changeLocation(idCombobox)
+{
+
+    var LocationId = document.getElementById("cb-showtime-location-"+idCombobox).value;
+    if(LocationId=='all')
+    {
+        location.replace('/admin/showtimemanagement');
+    }
+    else
+    {
+    //ajax
+        $.ajax({
+        type: "GET",
+        url: "/admin/showtimemanagement/getlistcinema?locationid="+LocationId,
+        contentType: "application/json",
+        success: function(data){
+            if(data && data!="F")
+            {
+                //reset option
+                $('#cb-showtime-cinema-'+idCombobox).find('option').remove().end();
+                if(idCombobox=='2')
+                {
+                  $('#cb-showtime-cinema-'+idCombobox).append('<option>Chọn rạp phim</option>');
+                }
+                else if (idCombobox=='1')
+                {
+                  $('#cb-showtime-cinema-'+idCombobox).append('<option value="all" id="cinema_0-1">Tất cả</option>');
+                }
+              
+                const listCinema=JSON.parse(data);
+
+                for(var item of listCinema)
+                {
+                  const id=item.id;
+                  const name=item.Name;
+                  $('#cb-showtime-cinema-'+idCombobox).append('<option value="'+id+'" id="cinema_'+id+'-1">'+name+'</option>');
+                }
+            }
+            else
+            {
+                alert("Somthing error !!!");
+            }
+        }
+        });    
+    }
+
+}
+
+function changeCinema()
+{
+    var cinemaId = document.getElementById("cb-showtime-cinema-1").value;
+    var locationId = document.getElementById("cb-showtime-location-1").value;
+
+    location.replace('/admin/showtimemanagement?locationid='+locationId+'&cinemaid='+cinemaId);
+
+}
+
+function PopupEditShowtime(id)
+{
+    '<% for(var item of Showtimes) {%>'
+    if('<%-item.id%>'==id)
+    {
+        //handle date
+        var dateOg =new Date('<%- item.BeginAt %>');
+        var month=String(dateOg.getMonth()+1);
+        var day=String(dateOg.getDate());
+        var month=month.length==1 ? '0'+month:month;
+        var day=day.length==1 ? '0'+day:day;
+        var date=dateOg.getFullYear()+'-'+month+'-'+day;
+        //
+
+        //handle time
+        //start
+        var hourBegin=String(dateOg.getHours());
+        var minuteBegin=String(dateOg.getMinutes());
+        hourBegin=hourBegin.length==1 ? '0'+hourBegin:hourBegin;
+        minuteBegin=minuteBegin.length==1 ? '0'+minuteBegin:minuteBegin;
+        var timeStart=hourBegin + ':'+minuteBegin+':00';
+        //end
+        var dateEnd =new Date('<%- item.EndAt %>');
+        var hourEnd=String(dateEnd.getHours());
+        var minuteEnd=String(dateEnd.getMinutes());
+        hourEnd=hourEnd.length==1 ? '0'+hourEnd:hourEnd;
+        minuteEnd=minuteEnd.length==1 ? '0'+minuteEnd:minuteEnd;
+        var timeEnd=hourEnd + ':'+minuteEnd+':00';
+        //
+
+        $('#edit-showtime-name').html('Tên phim: '+'<%- item.NameMovie %>');
+        $('#edit-showtime-date').val(date);
+        document.getElementById("edit-showtime-start").value = timeStart;
+        document.getElementById("edit-showtime-end").value = timeEnd;
+        $('#edit-showtime-price').val('<%- item.PriceTicket %>');
+    }
+    '<% } %>'
+
+    //get id showtime
+    idShowtimeEdit=id;
+
+}
+
+function UpdateShowtime()
+{
+    //new data to update
+    var showtime=new Object();
+    showtime.id=idShowtimeEdit;
+    showtime.BeginAt=$('#edit-showtime-date').val()+ ' ' + document.getElementById("edit-showtime-start").value;
+    showtime.EndAt=$('#edit-showtime-date').val()+ ' ' + document.getElementById("edit-showtime-end").value;
+    showtime.PriceTicket=$('#edit-showtime-price').val();
+
+    // ajax 
+    $.ajax({
+    type: "POST",
+    url: "/admin/showtimemanagement/updateshowtime",
+    contentType: "application/json",
+    data: JSON.stringify({showtimeUpdate : showtime}),
+    dataType: 'json',
+    success: function(data)
+    {
+    if(data=="OK")
+    {
+        alert('Update success');
+        location.reload();
+    }
+    else
+    {
+        alert("Somthing error !!!");
+    }
+    }
+    })
+}
+
+function DeleteShowtimes()
+{
+    var listIdShowtimeDelete = Object.keys(listChooseShowtime).map((key) => key);
+    if(listIdShowtimeDelete.length==0)
+    {
+        alert("You have not selected item");
+    }
+    else
+    {
+        //ajax
+        $.ajax({
+            type: "POST",
+            url: "/admin/showtimemanagement/deleteshowtime",
+            contentType: "application/json",
+            data: JSON.stringify({listIdShowtime : listIdShowtimeDelete}),
+            dataType: 'json',
+            success: function(data)
+            {
+                if(data=="OK")
+                {
+                    alert('Delete success');
+                    location.reload();
+                }
+                else
+                {
+                    alert("Somthing error !!!");
+                }
+            }
+            })
+    }
+   
+}
+
+
+function AddShowtime()
+{
+    var showtime=new Object();
+    showtime.MovieTheaterId = document.getElementById("cb-showtime-cinema-2").value;
+    showtime.MovieId= document.getElementById("cb-showtime-movie-2").value;
+    showtime.BeginAt=$('#add-showtime-date').val()+ ' ' + document.getElementById("add-showtime-start").value;;
+    showtime.EndAt=$('#add-showtime-date').val()+ ' ' + document.getElementById("add-showtime-end").value;;
+    showtime.PriceTicket=$('#add-showtime-price').val();
+
+    //ajax 
+    $.ajax({
+    type: "POST",
+    url: "/admin/showtimemanagement/addshowtime",
+    contentType: "application/json",
+    data: JSON.stringify({showtimeNew : showtime}),
+    dataType: 'json',
+    success: function(data)
+    {
+    if(data=="OK")
+    {
+        alert('Add success');
+        location.replace('/admin/showtimemanagement');
+    }
+    else
+    {
+        alert("Somthing error !!!");
+    }
+    }
+    });
+
+}
+
+
+
+
+</script>

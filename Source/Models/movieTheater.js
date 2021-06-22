@@ -38,6 +38,16 @@ MovieTheater.getAll = async function()
     return await MovieTheater.findAll();
 }
 
+MovieTheater.getByLocationId = async function(locationId)
+{
+    const cinemas = await db.query('SELECT * FROM "MovieTheaters" WHERE "MovieTheaterClusterId" = ?', 
+    { 
+        replacements: [locationId], //mảng danh sách tham số
+        type: db.QueryTypes.SELECT 
+    });
+    return cinemas;
+}
+
 MovieTheater.belongsTo(mvThCluster);
 mvThCluster.hasMany(MovieTheater);
 

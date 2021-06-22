@@ -23,7 +23,7 @@ const authAdminRouter=require('./Routers/ADMIN/authAd');
 const indexAdminRouter=require('./Routers/ADMIN/indexAd');
 const cinemaManagementRouter=require('./Routers/ADMIN/cinemaManagement');
 const movieManagementRouter=require('./Routers/ADMIN/movieManagement');
-
+const showtimeManagementRouter=require('./Routers/ADMIN/showtimeManagement');
 
 //app
 const app=express();
@@ -55,6 +55,7 @@ app.use('/admin/auth',authAdminRouter);
 app.use('/admin/index',indexAdminRouter);
 app.use('/admin/cinemamanagement',cinemaManagementRouter);
 app.use('/admin/moviemanagement',movieManagementRouter);
+app.use('/admin/showtimemanagement',showtimeManagementRouter);
 
 // thêm template EJS (sử dụng để code giao diện)
 app.set('views', './Views');
