@@ -47,4 +47,18 @@ Booking.createBooking = async function(id,date,priceTotal,showtimeId,userId) {
  };
 
 
+ Booking.getTotalRevenueByMonth = async function()
+ {
+    const total = await db.query('SELECT EXTRACT( MONTH FROM "bk"."Date") AS Thang, EXTRACT( YEAR FROM "bk"."Date") AS Nam, SUM("bk"."PriceTotal") AS DoanhThu FROM "Bookings" AS bk GROUP BY EXTRACT( MONTH FROM "bk"."Date"), EXTRACT( YEAR FROM "bk"."Date") ORDER BY EXTRACT( YEAR FROM "bk"."Date") DESC, EXTRACT( MONTH FROM "bk"."Date") DESC OFFSET 0 LIMIT 4',
+                { type: db.QueryTypes.SELECT });
+    return total;
+ }
+
+ Booking.getTotalRevenueByDay = async function()
+ {
+    const total = await db.query('SELECT EXTRACT(DAY FROM "bk"."Date") AS Ngay, EXTRACT( MONTH FROM "bk"."Date") AS Thang, EXTRACT( YEAR FROM "bk"."Date") AS Nam, SUM("bk"."PriceTotal") AS DoanhThu FROM "Bookings" AS bk GROUP BY EXTRACT(DAY FROM "bk"."Date"), EXTRACT( MONTH FROM "bk"."Date"), EXTRACT( YEAR FROM "bk"."Date") ORDER BY EXTRACT( YEAR FROM "bk"."Date") DESC, EXTRACT( MONTH FROM "bk"."Date") DESC OFFSET 0 LIMIT 4',
+                { type: db.QueryTypes.SELECT });
+    return total;
+ }
+
 module.exports=Booking;
