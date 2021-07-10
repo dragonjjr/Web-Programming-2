@@ -1,19 +1,28 @@
-<br><br><br><br>
-<div class="container">
-    <div class="row">
-      <div class="col">
-        <%- include('../../Layouts/layout_Information/MenuVertical.ejs'); %>
-      </div>
-      <div class="col">
-        <h3>Change information</h3><br>
-        <form method="POST">
-            <label for="name"><b>Name:</b></label><br>
-            <input type="text" id="name" name="name" value="<%= currentUser.Name %>"><br><br>
-            <label for="phone"><b>Phone:</b></label><br>
-            <input type="text" id="phone" name="phone" value="<%= currentUser.Phone %>"><br><br>
-            <b>Email address:</b> <br><%= currentUser.Email %><br><br>
-            <button id="submit" type="submit" class="btn btn-primary">Save</button>
-        </form>
-      </div>
+<div class="container info">
+  <div class="row">
+    <div class="col-sm-4 bar">
+      <%- include('../../Layouts/layout_Information/MenuVertical.ejs'); %>
+    </div>
+    <div class="col-sm-8 information">
+      <h3>CHANGE INFORMATION</h3>
+      <form method="POST">
+        <div class="form-group">
+          <label for="name"><strong>Name:</strong></label><br>
+          <input type="text" id="name" name="name" value="<%= currentUser.Name %>">
+        </div>
+        <div class="form-group">
+          <label for="phone"><b>Phone:</b></label><br>
+          <input type="number" id="phone" name="phone" value="<%= currentUser.Phone %>">
+        </div>
+        <div class="form-group">
+          <label><strong>Email address:</strong></label>
+          <p style="font-size: 1.1rem;">
+            <%= currentUser.Email %>
+          </p>
+
+        </div>
+        <button id="submit" type="submit">Save</button>
+      </form>
     </div>
   </div>
+</div>

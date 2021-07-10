@@ -1,23 +1,25 @@
-<br><br><br><br>
-<div class="container">
-    <div class="row">
-      <div class="col">
-        <%- include('../../Layouts/layout_Information/MenuVertical.ejs'); %>
-      </div>
-      <div class="col">
-        <h3>Booking history</h3><br>
-        <% var len=Bookings.length;
-            if(len>0){ 
-              for(var item of Bookings){ %>
-                <ul>
-                  <b><%= item.createdAt %></b>
-                  <li>Movie: <%= item.nameMovie %></li>
-                  <li>Movie theater: <%= item.nameMovieTheater %></li>
-                </ul>      
-              <% } %>
-        <%} else { %>
-              <p>You don't have any order</p>
+<div class="container info">
+  <div class="row">
+    <div class="col-sm-4 bar">
+      <%- include('../../Layouts/layout_Information/MenuVertical.ejs'); %>
+    </div>
+    <div class="col-sm-8 information">
+      <h3>BOOKING HISTORY</h3>
+      <% var len=Bookings.length; if(len>0){
+        for(var item of Bookings){ %>
+        <ul>
+          <b>
+            <%= item.createdAt %>
+          </b>
+          <li>Movie: <%= item.nameMovie %>
+          </li>
+          <li>Movie theater: <%= item.nameMovieTheater %>
+          </li>
+        </ul>
         <% } %>
-      </div>
+          <%} else { %>
+            <p style="font-size: 1.1rem;">You don't have any order</p>
+            <% } %>
     </div>
   </div>
+</div>

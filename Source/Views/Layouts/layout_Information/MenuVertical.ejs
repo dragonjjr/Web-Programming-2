@@ -1,5 +1,84 @@
-<h3>Information</h3>
-<ul class="Menu">
-    <li><a href="/information/profile">My profile</a></li>
-    <li><a href="/information/tickets">Booking history</a></li>  
+<h3>ACCOUNT</h3>
+<ul class="menu">
+    <li class="nav-menu active"><a href="/information/profile">My Profile</a></li>
+    <li class="nav-menu "><a href="/information/tickets">Booking History</a></li>
 </ul>
+
+<style>
+    label,
+    input,
+    p {
+        font-size: 1.1rem;
+        color: #444;
+    }
+
+    form {
+        margin-left: 2rem;
+    }
+
+    input {
+        padding: 0.5rem 1rem;
+        width: 50%;
+
+    }
+
+    input:focus {
+        outline: lightskyblue;
+        border: 1px solid lightskyblue;
+        box-shadow: 0 0 5px #719ECE;
+    }
+
+    button {
+        font-size: 1.1rem;
+        padding: 0.5rem 2rem;
+        background-color: lightskyblue;
+        border-radius: 5px;
+        border-style: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: rgb(81, 181, 243);
+    }
+
+    .container.info {
+        margin-top: 100px;
+        min-height: 500px;
+    }
+
+    /* .container.info .row {
+        height: 100vh;
+    } */
+
+    .form-group {
+        margin: 1.5rem 0;
+    }
+
+    .menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+
+    .menu li {
+        padding: 0.5rem 1.5rem;
+        color: #444;
+    }
+
+    .menu li a {
+        text-decoration: inherit;
+        color: inherit;
+    }
+
+    .active {
+        background-color: lightskyblue;
+    }
+
+    .active:hover,
+    .nav-menu:hover {
+        background-color: rgb(81, 181, 243);
+    }
+</style>
