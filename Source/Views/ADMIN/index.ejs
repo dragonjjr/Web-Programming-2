@@ -38,12 +38,15 @@
                   <div class="card-body">
                     <h4 class="card-title" style="text-align: center;">Thống kê doanh thu theo cụm rạp</h4>
                     <div class="form-group row">
-                      <div class="col-5">
-                        <input class="form-control" type="date" value="2021-06-06" id="from-date">
+                      <div class="col-4">
+                        <input class="form-control" type="date" value="<%-beforeDate%>" id="startDate-RevenueByLocation">
                       </div>
-                      <label for="from-date" class="col-2 col-form-label">Đến</label>
-                      <div class="col-5">
-                        <input class="form-control" type="date" value="2021-06-06" id="from-date">
+                      <label for="from-date" class="col-1 col-form-label">Đến</label>
+                      <div class="col-4">
+                        <input class="form-control" type="date" value="<%-Today%>" id="endDate-RevenueByLocation">
+                      </div>
+                      <div class="col-3">
+                        <button class="btn btn-primary" onclick="SearchRevenueByDate('location')">Search</button>
                       </div>
                     </div>
                     <!-- Bảng  -->
@@ -57,45 +60,39 @@
                             <th> Doanh thu </th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="bodyTableOfRevenueByLocation">
+                          <% for (let i = 0; i < (ListRevenueByLocation.length > pageSize ? pageSize : ListRevenueByLocation.length); i++){ %>
                           <tr>
-                            <td> 1 </td>
-                            <td> Hồ Chí Minh </td>
-                            <td> 50000 </td>
-                            <td> 5000000 </td>
+                            <td> <%-i+1%> </td>
+                            <td> <%-ListRevenueByLocation[i].namelocation %> </td>
+                            <td> <%-ListRevenueByLocation[i].numtickets %> </td>
+                            <td> <%-ListRevenueByLocation[i].doanhthu %> </td>
                           </tr>
-                          <tr>
-                            <td> 2 </td>
-                            <td> Hà Nội</td>
-                            <td> 50000 </td>
-                            <td> 5000000 </td>
-                          </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> Đà Nẵng </td>
-                            <td> 50000 </td>
-                            <td> 5000000 </td>
-                          </tr>
+                          <% } %>
                         </tbody>
                       </table>               
                     </div>
                     <!-- --------------------------- -->
                     <!-- Phân trang -->
                       <ul class="pagination" style="margin-top: 1rem; float: right;">
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Previous">
+                        <li class="page-item" onclick="choosePageLocation(pageIndexLocation-1)" style="display:none;" id="li-previous-location">
+                          <a class="page-link" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                           </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Next">
+                        <li class="page-item" onclick="choosePageLocation('1')" id="li-indexPageLocation-1"><a style="background-color: lightgray;" class="page-link">1</a></li>
+                        <% for(let i=2;i<=numPageLocation;i++){ %>
+                          <li class="page-item" onclick="choosePageLocation('<%-i%>')" id="li-indexPageLocation-<%-i%>"><a class="page-link"><%- i %></a></li>
+                        <% } %>
+                        <% if(numPageLocation>1){ %>
+                        <li class="page-item" onclick="choosePageLocation(pageIndexLocation+1)" id="li-next-location">
+                          <a class="page-link" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                           </a>
                         </li>
+                        <% } %>
                       </ul>
                       <!-- ------------------ -->
                   </div>
@@ -105,7 +102,7 @@
               <div class="col-md-5 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Biểu đồ</h4>
+                    <h4 class="card-title">Biểu đồ top 3</h4>
                     <canvas id="doughnutChart"></canvas>
                   </div>
                 </div>
@@ -120,12 +117,15 @@
                   <div class="card-body">
                     <h4 class="card-title" style="text-align: center;">Thống kê doanh thu theo phim</h4>
                     <div class="form-group row">
-                      <div class="col-5">
-                        <input class="form-control" type="date" value="2021-06-06" id="from-date">
+                      <div class="col-4">
+                        <input class="form-control" type="date" value="<%-beforeDate%>" id="startDate-RevenueByMovie">
                       </div>
-                      <label for="from-date" class="col-2 col-form-label">Đến</label>
-                      <div class="col-5">
-                        <input class="form-control" type="date" value="2021-06-06" id="from-date">
+                      <label for="from-date" class="col-1 col-form-label">Đến</label>
+                      <div class="col-4">
+                        <input class="form-control" type="date" value="<%-Today%>" id="endDate-RevenueByMovie">
+                      </div>
+                      <div class="col-3">
+                        <button class="btn btn-primary" onclick="SearchRevenueByDate('movie')">Search</button>
                       </div>
                     </div>
                     <!-- Bảng -->
@@ -139,46 +139,39 @@
                             <th> Doanh thu </th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="bodyTableOfRevenueByMovie">
+                          <% for (let i = 0; i < (ListRevenueByMovie.length > pageSize ? pageSize : ListRevenueByMovie.length); i++){ %>
                           <tr>
-                            <td> 1 </td>
-                            <td> Avengers: Endgame </td>
-                            <td> 50000 </td>
-                            <td> 5000000 </td>
+                            <td> <%- i+1 %> </td>
+                            <td> <%-ListRevenueByMovie[i].namemovie %> </td>
+                            <td> <%-ListRevenueByMovie[i].numtickets %> </td>
+                            <td> <%-ListRevenueByMovie[i].doanhthu %> </td>
                           </tr>
-                          <tr>
-                            <td> 2 </td>
-                            <td> Frozen 2</td>
-                            <td> 50000 </td>
-                            <td> 5000000 </td>
-                          </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> One piece </td>
-                            <td> 50000 </td>
-                            <td> 5000000 </td>
-                          </tr>
+                          <% } %>
                         </tbody>
                       </table>
                     </div>
                     <!-- ----------------- -->
                     <!-- Phân trang -->
                       <ul class="pagination" style="margin-top: 1rem; float: right;">
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Previous">
+                        <li class="page-item" onclick="choosePageMovie(pageIndexMovie-1)" style="display:none;" id="li-previous-movie">
+                          <a class="page-link" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                           </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Next">
+                        <li class="page-item" onclick="choosePageMovie('1')" id="li-indexPageMovie-1"><a style="background-color: lightgray;" class="page-link">1</a></li>
+                        <% for(let i=2;i<=numPageMovie;i++){ %>
+                          <li class="page-item" onclick="choosePageMovie('<%-i%>')" id="li-indexPageMovie-<%-i%>"><a class="page-link"><%- i %></a></li>
+                        <% } %>
+                        <% if(numPageMovie>1){ %>
+                        <li class="page-item" onclick="choosePageMovie(pageIndexMovie+1)" id="li-next-movie">
+                          <a class="page-link" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                           </a>
                         </li>
+                        <% } %>
                       </ul>
                       <!-- ------------------- -->
                   </div>
@@ -188,7 +181,7 @@
               <div class="col-md-5 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Biểu đồ</h4>
+                    <h4 class="card-title">Biểu đồ top 3</h4>
                     <canvas id="pieChart"></canvas>
                   </div>
                 </div>
@@ -196,18 +189,314 @@
               <!-- ----------------------- -->
             </div>
           </div>
-          <!-- -->
+
+
+          <!--========================================================================================================== -->
           <script src="/js/vendor.bundle.base.js"></script>
           <script src="/js/Chart.min.js"></script>
           
           <script>
-            
+
             const TongDoanhThuTheoThang = '<%= TongDoanhThuTheoThang %>'.split(',');
             const LabelTongDoanhThuTheoThang ='<%= LabelTongDoanhThuTheoThang %>'.split(',');
 
             const TongDoanhThuTheoNgay = '<%= TongDoanhThuTheoNgay %>'.split(',');
             const LabelTongDoanhThuTheoNgay ='<%= LabelTongDoanhThuTheoNgay %>'.split(',');
 
+            var ListRevenueByLocation= JSON.parse('<%- JSON.stringify(ListRevenueByLocation) %>');
+            var RevenueByLocations_Total='<%= RevenueByLocations_Total %>'.split(',');
+            var RevenueByLocations_Label='<%= RevenueByLocations_Label %>'.split(',').slice(0,3);
+ 
+            var ListRevenueByMovie= JSON.parse('<%- JSON.stringify(ListRevenueByMovie) %>');
+            var RevenueByMovies_Total='<%= RevenueByMovies_Total %>'.split(',');
+            var RevenueByMovies_Label='<%= RevenueByMovies_Label %>'.split(',').slice(0,3);
+
+            var pageSize='<%= pageSize %>';
+
+            var Doughnut={
+                  doughnutData: {},
+                  doughnutOptions:{}
+            };
+
+            var Pie={
+                  pieData: {},
+                  pieOptions: {}
+            };
+
+            //phân trang
+            var pageIndexLocation=1;
+            var pageIndexMovie=1;
+
+            function choosePageLocation(index)
+            {
+              if(index!=pageIndexLocation)
+              {
+                //tạo nhận biết page đã chọn
+                $('#li-indexPageLocation-'+pageIndexLocation).html('<a class="page-link">'+pageIndexLocation+'</a>');
+                $('#li-indexPageLocation-'+index).html('<a style="background-color: lightgray;" class="page-link">'+index+'</a>');
+
+                const start = (index-1)*pageSize;
+                const end = (pageSize*index) > ListRevenueByLocation.length ? ListRevenueByLocation.length : (pageSize*index);
+                const ListLocationPageNew=ListRevenueByLocation.slice(start,end);
+
+                //reset table
+                $('#bodyTableOfRevenueByLocation').html('');
+                var content='';
+                for(let i=0;i<ListLocationPageNew.length;i++)
+                {
+                  content+='<tr><td>'+(i+1)+'</td><td>'+ListLocationPageNew[i].namelocation+'</td><td>'+ListLocationPageNew[i].numtickets+'</td><td>'+ListLocationPageNew[i].doanhthu+'</td></tr>';
+                }
+
+                $('#bodyTableOfRevenueByLocation').append(content);
+
+                //reset page index
+                pageIndexLocation=parseInt(index);
+
+                //reset paging bar
+                const valueCssPre= index > 1 ? 'block' : 'none';  
+                $('#li-previous-location').css('display', valueCssPre);
+
+                const valueCssNe= index < '<%-numPageLocation %>' ? 'block' : 'none';  
+                $('#li-next-location').css('display', valueCssNe);
+              }
+             
+            }
+
+            function choosePageMovie(index)
+            {
+              if(index!=pageIndexMovie)
+              {
+                //tạo nhận biết page đã chọn
+                $('#li-indexPageMovie-'+pageIndexMovie).html('<a class="page-link">'+pageIndexMovie+'</a>');
+                $('#li-indexPageMovie-'+index).html('<a style="background-color: lightgray;" class="page-link">'+index+'</a>');
+
+                const start = (index-1)*pageSize;
+                const end = (pageSize*index) > ListRevenueByMovie.length ? ListRevenueByMovie.length : (pageSize*index);
+                const ListMoviePageNew=ListRevenueByMovie.slice(start,end);
+
+                //reset table
+                $('#bodyTableOfRevenueByMovie').html('');
+                var content='';
+                for(let i=0;i<ListMoviePageNew.length;i++)
+                {
+                  content+='<tr><td>'+(i+1)+'</td><td>'+ListMoviePageNew[i].namemovie+'</td><td>'+ListMoviePageNew[i].numtickets+'</td><td>'+ListMoviePageNew[i].doanhthu+'</td></tr>';
+                }
+
+                $('#bodyTableOfRevenueByMovie').append(content);
+
+                //reset page index
+                pageIndexMovie=parseInt(index);
+
+                //reset paging bar
+                const valueCssPre= index > 1 ? 'block' : 'none';  
+                $('#li-previous-movie').css('display', valueCssPre);
+
+                const valueCssNe= index < '<%-numPageMovie %>' ? 'block' : 'none';  
+                $('#li-next-movie').css('display', valueCssNe);
+              }
+              
+            }
+
+            //danh sách doanh thu theo ngày chỉ định (theo cụm rạp và phim)
+            function SearchRevenueByDate(kind)
+            {
+            
+              if(kind=='location')
+              {
+                //get date
+                var start=$('#startDate-RevenueByLocation').val();
+                var end=$('#endDate-RevenueByLocation').val();
+
+                //ajax call
+                $.ajax({
+                  type: "GET",
+                  url: "/admin/index/getRevenueByLocation?start="+start+"&end="+end,
+                  contentType: "application/json", 
+                  dataType: 'json',
+                  success: function(data)
+                  {
+                    if(data && data!="F")
+                    {      
+                      //reset table
+                      $('#bodyTableOfRevenueByLocation').html('');
+                      var content='';
+                      //const ArrRevenueByLocaion=JSON.parse(data);
+                      for(let i=0;i < (data.length > pageSize ? pageSize : data.length);i++)
+                      {
+                        content+='<tr><td>'+(i+1)+'</td><td>'+data[i].namelocation+'</td><td>'+data[i].numtickets+'</td><td>'+data[i].doanhthu+'</td></tr>';
+                      }
+
+                      $('#bodyTableOfRevenueByLocation').append(content);
+
+                      //----------reset data list location
+                      ListRevenueByLocation=data;
+
+                      //---------- Tạo lại biểu đồ tròn minh họa
+
+                      RevenueByLocations_Total=data.map(function (obj){ return obj.doanhthu; });                                          
+                      RevenueByLocations_Label=data.map(function (obj){return obj.namelocation; }).slice(0,3);
+
+                      initDoughnut();
+                      drawChartDoughnut();
+                      
+                    }
+                    else
+                    {
+                      alert("Somthing error !!!");
+                    }
+                  }
+                })
+                
+              }
+              else //by movie
+              {
+                
+                //get date
+                var start=$('#startDate-RevenueByMovie').val();
+                var end=$('#endDate-RevenueByMovie').val();
+
+                //ajax call
+                $.ajax({
+                  type: "GET",
+                  url: "/admin/index/getRevenueByMovie?start="+start+"&end="+end,
+                  contentType: "application/json", 
+                  dataType: 'json',
+                  success: function(data)
+                  {
+                    if(data && data!="F")
+                    {      
+                      //reset table
+                      $('#bodyTableOfRevenueByMovie').html('');
+                      var content='';
+                      //const ArrRevenueByLocaion=JSON.parse(data);
+                      for(let i=0;i< (data.length > pageSize ? pageSize : data.length);i++)
+                      {
+                        content+='<tr><td>'+(i+1)+'</td><td>'+data[i].namemovie+'</td><td>'+data[i].numtickets+'</td><td>'+data[i].doanhthu+'</td></tr>';
+                      }
+
+                      $('#bodyTableOfRevenueByMovie').append(content);
+
+                      //----------reset data list movie
+                      ListRevenueByMovie=data;
+
+                       //---------- Tạo lại biểu đồ tròn minh họa
+
+                       RevenueByMovies_Total=data.map(function (obj){ return obj.doanhthu; });                                  
+                       RevenueByMovies_Label=data.map(function (obj){return obj.namemovie; }).slice(0,3);
+
+                       initPie();
+                       drawPie();
+                    }
+                    else
+                    {
+                      alert("Somthing error !!!");
+                    }
+                  }
+                })
+              }
+            }
+
+            // -----------------init
+
+            function initDoughnut()
+            {
+              // Biểu đồ theo cụm rạp
+              Doughnut.doughnutData = {
+                datasets: [{
+                  data: RevenueByLocations_Total,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)'
+                  ],
+                  borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                  ],
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: RevenueByLocations_Label
+              };
+
+              Doughnut.doughnutOptions = {
+                responsive: true,
+                animation: {
+                  animateScale: true,
+                  animateRotate: true
+                }
+              };
+            }
+
+            function drawChartDoughnut()
+            {
+              $("#doughnutChart").html('');
+                if ($("#doughnutChart").length) {
+                    var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
+                    var doughnutChart = new Chart(doughnutChartCanvas, {
+                      type: 'doughnut',
+                      data: Doughnut.doughnutData,
+                      options: Doughnut.doughnutOptions
+                    });
+                  }
+            }
+
+            function initPie()
+            {
+              Pie.pieData = {
+                datasets: [{
+                  data: RevenueByMovies_Total,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)'
+                  ],
+                  borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                  ],
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: RevenueByMovies_Label
+              };
+
+              Pie.pieOptions = {
+                responsive: true,
+                animation: {
+                  animateScale: true,
+                  animateRotate: true
+                }
+              };
+            }
+
+            function drawPie()
+            {
+              $("#pieChart").html('');
+              if ($("#pieChart").length) {
+                var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+                var pieChart = new Chart(pieChartCanvas, {
+                  type: 'pie',
+                  data: Pie.pieData,
+                  options: Pie.pieOptions
+                });
+              }
+            }
+            //==============================function execute when load page
             $(function () {
               /* ChartJS
               * -------
@@ -215,82 +504,11 @@
               */
               'use strict';
 
-              // Biểu đồ theo cụm rạp
-              var doughnutData = {
-                datasets: [{
-                  data: [30, 40, 30],
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                    'rgba(255, 159, 64, 0.5)'
-                  ],
-                  borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                  ],
-                }],
-
-                // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels: [
-                  'Hồ Chí Minh',
-                  'Hà Nội',
-                  'Đà Nẵng',
-                ]
-              };
-
-              var doughnutOptions = {
-                responsive: true,
-                animation: {
-                  animateScale: true,
-                  animateRotate: true
-                }
-              };
-              // --------------------------------------
-
+              //biểu đồ theo cụm rạp
+              initDoughnut();
+              
               // Biểu đồ theo phim
-              var pieData = {
-                datasets: [{
-                  data: [30, 40, 30],
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                    'rgba(255, 159, 64, 0.5)'
-                  ],
-                  borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                  ],
-                }],
-
-                // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels: [
-                  'Avengers: Endgame',
-                  'Frozen 2',
-                  'One Piece',
-                ]
-              };
-
-              var pieOptions = {
-                responsive: true,
-                animation: {
-                  animateScale: true,
-                  animateRotate: true
-                }
-              };
+              initPie();
               // --------------------------------------
 
 
@@ -391,23 +609,9 @@
               }
 
 
-              if ($("#doughnutChart").length) {
-                var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
-                var doughnutChart = new Chart(doughnutChartCanvas, {
-                  type: 'doughnut',
-                  data: doughnutData,
-                  options: doughnutOptions
-                });
-              }
+              drawChartDoughnut();
 
-              if ($("#pieChart").length) {
-                var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-                var pieChart = new Chart(pieChartCanvas, {
-                  type: 'pie',
-                  data: pieData,
-                  options: pieOptions
-                });
-              }
+              drawPie();
 
             });
           </script>

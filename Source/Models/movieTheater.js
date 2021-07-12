@@ -48,7 +48,6 @@ MovieTheater.getByLocationId = async function(locationId)
     return cinemas;
 }
 
-
 MovieTheater.belongsTo(mvThCluster);
 mvThCluster.hasMany(MovieTheater);
 

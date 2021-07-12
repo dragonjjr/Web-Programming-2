@@ -61,4 +61,22 @@ Booking.createBooking = async function(id,date,priceTotal,showtimeId,userId) {
     return total;
  }
 
+ Booking.getRevenueByLocation = async function(start,end)
+ {
+    const total = await db.query('SELECT "mvtc"."Name" AS namelocation, CASE WHEN SUM("bk"."PriceTotal") is NULL THEN 0 ELSE SUM(CASE WHEN "bk"."Date">=? AND "bk"."Date"<=? THEN "bk"."PriceTotal" ELSE 0 END) END AS doanhthu, CASE WHEN COUNT("tk"."ID") is NULL THEN 0 ELSE COUNT(CASE WHEN "bk"."Date">=? AND "bk"."Date"<=? THEN 1 ELSE NULL END) END AS numtickets FROM "Bookings" AS bk JOIN "Tickets" AS tk ON "tk"."BookingID"="bk"."ID" JOIN "Showtimes" AS st ON "bk"."ShowtimeId"="st"."id" JOIN "MovieTheaters" AS mvt ON "st"."MovieTheaterId"="mvt"."id" RIGHT JOIN "MovieTheaterClusters" AS mvtc ON "mvtc"."id"="mvt"."MovieTheaterClusterId" GROUP BY "mvtc"."id","mvtc"."Name" ORDER BY doanhthu DESC',
+                {   replacements: [start,end,start,end],
+                    type: db.QueryTypes.SELECT 
+                });
+    return total;
+ }
+
+ Booking.getRevenueByMovie = async function(start,end)
+ {
+    const total = await db.query('SELECT "mv"."Name" AS namemovie, CASE WHEN SUM("bk"."PriceTotal") is NULL THEN 0 ELSE SUM(CASE WHEN "bk"."Date">=? AND "bk"."Date"<=? THEN "bk"."PriceTotal" ELSE 0 END) END AS doanhthu, CASE WHEN COUNT("tk"."ID") is NULL THEN 0 ELSE COUNT(CASE WHEN "bk"."Date">=? AND "bk"."Date"<=? THEN 1 ELSE NULL END) END AS numtickets FROM "Bookings" AS bk JOIN "Tickets" AS tk ON "tk"."BookingID"="bk"."ID" JOIN "Showtimes" AS st ON "bk"."ShowtimeId"="st"."id" RIGHT JOIN "Movies" AS mv ON "st"."MovieId"="mv"."id" GROUP BY "mv"."id","mv"."Name" ORDER BY doanhthu DESC',
+    {   replacements: [start,end,start,end],
+        type: db.QueryTypes.SELECT 
+    });
+    return total;
+ }
+ 
 module.exports=Booking;

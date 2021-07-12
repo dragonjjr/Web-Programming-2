@@ -72,7 +72,7 @@ Movie.getCount = async function()
 Movie.getListMovie = async function(pageIndex,pageSize)
 {
     const offset=(pageIndex-1)*pageSize;
-    const movies = await db.query('SELECT * FROM "Movies" ORDER BY "ReleaseDate" OFFSET ? LIMIT ?', 
+    const movies = await db.query('SELECT * FROM "Movies" ORDER BY "createdAt" OFFSET ? LIMIT ?', 
             { 
                 replacements: [offset,pageSize], //mảng danh sách tham số
                 type: db.QueryTypes.SELECT 

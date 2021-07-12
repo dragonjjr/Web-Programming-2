@@ -26,8 +26,8 @@
 							<div class="box-content">
 								<h3 class="title"><%- item.Name %>></h3>
 								<div class="post">
-									<button type="button" class="btn btn-1">See Detail</button>
-									<button type="button" class="btn btn-1">Buy ticket</button>
+									<button type="button" class="btn btn-1" onclick="window.location.href='/movie/detail?id=<%= item.id %>'">See Detail</button>
+									<button type="button" class="btn btn-1" onclick="window.location.href='/booking?id=<%= item.id %>'">Buy ticket</button>
 								</div>
 							</div>
 						</div>
