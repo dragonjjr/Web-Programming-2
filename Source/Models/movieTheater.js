@@ -33,10 +33,25 @@ const MovieTheater = db.define('MovieTheater', {
        // Other model options go here
   });
 
+  MovieTheater.createMovieTheater = async function(name,address,image,kind,width,height,movietheaterclusterId) {
+    await MovieTheater.create({
+             Name:name,
+             Address:address,
+             Image:image,
+             Kind:kind,
+             Width:width,
+             Height: height,
+             MovieTheaterClusterId:movietheaterclusterId,
+         });
+ }
 MovieTheater.getAll = async function()
 {
     return await MovieTheater.findAll();
-}
+};
+MovieTheater.findById= async function(id)
+{
+    return await MovieTheater.findByPk(id);
+};
 
 MovieTheater.getByLocationId = async function(locationId)
 {
@@ -46,7 +61,26 @@ MovieTheater.getByLocationId = async function(locationId)
         type: db.QueryTypes.SELECT 
     });
     return cinemas;
-}
+};
+
+MovieTheater.getListMovieTheater= async function(movietheaterId,pageIndex,pageSize)
+{
+    const offset=(pageIndex-1)*pageSize;
+    const movies = await db.query('SELECT * FROM "MovieTheaters" WHERE "MovieTheaterClusterId" = ? OFFSET ? LIMIT ?', 
+            { 
+                replacements: [movietheaterId,offset,pageSize], //mảng danh sách tham số
+                type: db.QueryTypes.SELECT 
+            });
+    return movies;
+};
+MovieTheater.deleteById = async function(id) {
+    await MovieTheater.destroy({
+        where: {
+          id
+        }
+    });
+};
+
 
 MovieTheater.belongsTo(mvThCluster);
 mvThCluster.hasMany(MovieTheater);
