@@ -22,23 +22,31 @@
 
     }
 
+    h3 {
+        color: #df0e62;
+        font-weight: bold;
+    }
+
+
     input:focus {
-        outline: lightskyblue;
-        border: 1px solid lightskyblue;
-        box-shadow: 0 0 5px #719ECE;
+        outline: #df0e62;
+        border: 1px solid #df0e62;
+        box-shadow: 0 0 5px #df0e62;
     }
 
     button {
         font-size: 1.1rem;
         padding: 0.5rem 2rem;
-        background-color: lightskyblue;
+        background-color: #df0e62;
         border-radius: 5px;
         border-style: none;
         cursor: pointer;
+        color: #fff;
     }
 
     button:hover {
-        background-color: rgb(81, 181, 243);
+        background-color: #bd034d;
+
     }
 
     .container.info {
@@ -63,22 +71,46 @@
     }
 
 
-    .menu li {
+    .menu .nav-menu {
         padding: 0.5rem 1.5rem;
         color: #444;
     }
 
-    .menu li a {
+    .menu .nav-menu a {
         text-decoration: inherit;
         color: inherit;
     }
 
-    .active {
-        background-color: lightskyblue;
+    .menu .list-history {
+        padding: 0 1.5rem;
+        color: #444;
     }
 
-    .active:hover,
+    .menu-info {
+        margin-bottom: 1rem;
+        margin-left: 2rem;
+
+    }
+
     .nav-menu:hover {
-        background-color: rgb(81, 181, 243);
+        background-color: #bd034d;
+        color: #fff;
+    }
+
+    .menu-active {
+        background-color: #df0e62;
+        color: #fff !important;
     }
 </style>
+
+<!-- Active nav menu -->
+<script type="text/javascript">
+    const currentLocation = location.href;
+    const menuList = document.querySelectorAll('.nav-menu')
+    const menuItem = document.querySelectorAll('.nav-menu a');
+    for (let i = 0; i < menuItem.length; i++) {
+        if (menuItem[i].href === currentLocation) {
+            menuList[i].className = "nav-menu menu-active";
+        }
+    }
+</script>

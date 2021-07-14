@@ -4,18 +4,19 @@
       <%- include('../../Layouts/layout_Information/MenuVertical.ejs'); %>
     </div>
     <div class="col-sm-8 information">
-      <h3>BOOKING HISTORY</h3>
+      <h3 style="margin-bottom: 1rem;">BOOKING HISTORY</h3>
       <% var len=Bookings.length; if(len>0){
         for(var item of Bookings){ %>
-        <ul>
+        <ul class="menu menu-info">
           <b>
             <%= item.createdAt %>
           </b>
-          <li>Movie: <%= item.nameMovie %>
+          <li class="list-history">Movie: <%= item.nameMovie %>
           </li>
-          <li>Movie theater: <%= item.nameMovieTheater %>
+          <li class="list-history">Theater: <%= item.nameMovieTheater %>
           </li>
         </ul>
+        <hr>
         <% } %>
           <%} else { %>
             <p style="font-size: 1.1rem;">You don't have any order</p>

@@ -5,7 +5,9 @@
 			<div class="headerhny-title">
 				<div class="w3l-title-grids">
 					<div class="headerhny">
-						<h3 class="hny-title">Movies in showings</h3>
+						<h1 class="hny-title"
+							style="color:#BD034D; text-transform: uppercase; font-weight: bold; margin-top: 2rem;">
+							Now showing</h3>
 					</div>
 				</div>
 			</div>
@@ -24,17 +26,22 @@
 									allowfullscreen=""></iframe>
 							</div>
 							<div class="box-content">
-								<h3 class="title"><%- item.Name %>></h3>
+								<h3 class="title">
+									<%- item.Name %>>
+								</h3>
 								<div class="post">
-									<button type="button" class="btn btn-1" onclick="window.location.href='/movie/detail?id=<%= item.id %>'">See Detail</button>
-									<button type="button" class="btn btn-1" onclick="window.location.href='/booking?id=<%= item.id %>'">Buy ticket</button>
+									<button type="button" class="btn btn-1"
+										onclick="window.location.href='/movie/detail?id=<%= item.id %>'">See
+										Detail</button>
+									<button type="button" class="btn btn-1"
+										onclick="window.location.href='/booking?id=<%= item.id %>'">Buy ticket</button>
 								</div>
 							</div>
 						</div>
 					</div>
-				<%}%>
-				
-				
+					<%}%>
+
+
 			</div>
 			<!-- ----------Phân trang----- -->
 			<!-- <div class="col-12 d-flex justify-content-center">
@@ -55,9 +62,10 @@
 					</li>
 				</ul>
 			</div> -->
-			<!-- ------------------------------------ -->	
+			<!-- ------------------------------------ -->
 		</div>
 	</div>
 </section>
+
 <!--//grids-sec1-->
 <!--grids-sec2-->

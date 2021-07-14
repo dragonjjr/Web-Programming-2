@@ -2,240 +2,233 @@
 
 *,
 body {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
 }
 
 html,
 body {
-    height: 100%;
-    background-color: #1a1a1a;
+  height: 100%;
+  background-color: #1a1a1a;
 }
 
 .form-body {
-    height: 100%;
+  height: 100%;
 }
 
-.form-body>.row {
-    position: relative;
-    margin-left: 0;
-    margin-right: 0;
-    height: 100%;
+.form-body > .row {
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  height: 100%;
 }
 
 .img-holder {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 700px;
-    min-height: 700px;
-    height: 100%;
-    overflow: hidden;
-    background-color: #1a1a1a;
-    z-index: 999;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 700px;
+  min-height: 700px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  z-index: 999;
 }
-
 
 .img-holder .bg {
-    position: absolute;
-    opacity: 0.6;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../images/login-img.jpg");
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
+  position: absolute;
+  opacity: 0.6;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/login-img.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 }
 
-
 .form-holder {
-    margin-left: 700px;
-    width: 50%;
+  margin-left: 700px;
+  width: 50%;
 }
 
 .form-holder .form-content {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 80px;
-    min-height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  min-height: 100%;
 }
 
 .form-holder .form-content hr {
-    border: 1px solid #e9e5e5;
-    margin: 0;
+  border: 1px solid #e9e5e5;
+  margin: 0;
 }
 
 .form-content {
-    background-color: #1a1a1a;
+  background-color: #1a1a1a;
 }
 
 .form-content .form-group {
-    color: #fff;
+  color: #fff;
 }
 
 .form-content .form-items {
-    max-width: 400px;
-    text-align: center;
+  max-width: 400px;
+  text-align: center;
 }
 
-
 .form-content .form-items .homepage {
-    text-align: center;
+  text-align: center;
 }
 
 .form-content .form-items .fa-arrow-left {
-    color: #fff;
-    font-size: 18px;
+  color: #fff;
+  font-size: 18px;
 }
 
 .form-content {
-    background-color: #1a1a1a;
+  background-color: #1a1a1a;
 }
 
 .form-content .form-items {
-    display: inline-block;
-    width: 100%;
-    max-width: 340px;
-    text-align: left;
+  display: inline-block;
+  width: 100%;
+  max-width: 340px;
+  text-align: left;
 }
 
 .form-content h3 {
-    color: #fff;
+  color: #fff;
 }
 
 .form-content h1 {
-    color: #fff;
-    text-align: center;
-    font-size: 60px;
-    font-weight: 500;
-    margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+  font-size: 60px;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .form-content p {
-    color: #fff;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 20px;
-    margin-bottom: 30px;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 30px;
 }
 
-
 .form-content .form-items .register-link p {
-    margin-bottom: 5px;
-    font-size: 15px;
+  margin-bottom: 5px;
+  font-size: 15px;
 }
 
 .form-content .form-items .register-link p.register {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .form-content .form-items .register-link a {
-    text-decoration: none;
-    color: #e42b66;
+  text-decoration: none;
+  color: #e42b66;
 }
 
 .form-content .form-items .register-link a:hover {
-    color: #c40f48;
+  color: #c40f48;
 }
 
 .form-content input {
-    width: 100%;
-    padding: 9px 20px;
-    text-align: left;
-    border: 1px solid #4a4a4a;
-    outline: 0;
-    border-radius: 5px;
-    background-color: #1a1a1a;
-    font-size: 20px;
-    font-weight: 300;
-    color: #ffffff;
-    transition: all 0.3s ease 0s;
-    margin-bottom: 14px;
+  width: 100%;
+  padding: 9px 20px;
+  text-align: left;
+  border: 1px solid #4a4a4a;
+  outline: 0;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  font-size: 20px;
+  font-weight: 300;
+  color: #ffffff;
+  transition: all 0.3s ease 0s;
+  margin-bottom: 14px;
 }
 
 .form-content input:hover {
-    border: 1px solid #fff;
+  border: 1px solid #fff;
 }
 
 .form-content input:focus {
-    border: 1px solid #c40f48;
-    background-color: #1a1a1a;
-    color: #fff;
-    outline: none;
-    box-shadow: 0 0 9px #c40f48;
+  border: 1px solid #c40f48;
+  background-color: #1a1a1a;
+  color: #fff;
+  outline: none;
+  box-shadow: 0 0 9px #c40f48;
 }
 
 .form-content .form-button {
-    margin-top: 30px;
-    margin-bottom: 15px;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
 .form-content .form-btn2 {
-    margin-top: 15px;
+  margin-top: 0;
 }
 
 .form-content .form-button .ibtn {
-    border-radius: 5px;
-    border: 0;
-    width: 100%;
-    padding: 8px 28px;
-    background-color: #c40f48;
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: all 0.3s ease;
+  border-radius: 5px;
+  border: 0;
+  width: 100%;
+  padding: 8px 28px;
+  background-color: #c40f48;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: all 0.3s ease;
 }
 
-
 .form-content .form-button .ibtn:hover {
-    background-color: #9e0e3c;
+  background-color: #9e0e3c;
 }
 
 .form-content .form-button .gg-btn {
-    background-color: #ffffff;
-    color: #df0a0a;
-    margin-bottom: 5px;
-    padding: 8px 28px;
+  background-color: #ffffff;
+  color: #df0a0a;
+  margin-bottom: 5px;
+  padding: 8px 28px;
 }
 
 .form-content .form-button .gg-btn:hover {
-    background-color: #dfdbdb;
+  background-color: #dfdbdb;
 }
 
 .form-content .form-button .fb-btn {
-    background-color: #4c69ba;
-    color: #ffffff;
-    padding: 8px 28px;
+  background-color: #4c69ba;
+  color: #ffffff;
+  padding: 8px 28px;
 }
 
 .form-content .form-button .fb-btn:hover {
-    background-color: #395296;
+  background-color: #395296;
 }
 
 /* Responsive */
 
 /* Fix sau */
 @media screen and (max-width: 1200px) {
+  .form-holder {
+    margin: 0 auto;
+  }
 
-    .form-holder {
-        margin: 0 auto;
-    }
+  .form-holder .form-content {
+    padding: 125px 60px 60px;
+  }
 
-    .form-holder .form-content {
-        padding: 125px 60px 60px;
-    }
-
-    .img-holder {
-        display: none;
-    }
-
+  .img-holder {
+    display: none;
+  }
 }
