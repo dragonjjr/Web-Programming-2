@@ -221,7 +221,7 @@ function popupEditMovie(id)
       $('#edit-mv-movie-name').val('<%- item.Name %>');
       $('#edit-mv-movie-time').val('<%- item.Time %>');
       $('#edit-mv-movie-date').val(time);
-      $('#edit-mv-movie-introduce').text('<%- item.Introduce %>');
+      $('#edit-mv-movie-introduce').val('<%- item.Introduce %>');
       $('#edit-mv-movie-trailer').val('<%- item.Trailer %>');
       $('#edit-mv-img').attr("src",'<%- item.PosterImage %>');
     }

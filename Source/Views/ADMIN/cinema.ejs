@@ -359,7 +359,7 @@ function changeLocation1(idCombobox)
             }
             else
             {
-                alert("Somthing error !!!");
+                alert("Something error !!!");
             }
         }
         });    
@@ -425,9 +425,9 @@ function changeLocation(idCombobox)
                         {
                             listCinema.length = 5;
                         }
-                        for(var item of listCinema)
+                        for(let i=0; i<listCinema.length;i++)
                         {
-                            $('#tableMovieTheater>tbody').append('<tr><td><input class="form-check-input" onclick="chooseMovieTheater('+item.id+')" type="checkbox" value="" id=""></td><td>'+ item.id + '</td><td>' + item.Name + '</td><td>' + item.Address +'</td><td>'+ item.Kind+ '</td><td><button type="button" class="btn btn-inverse-info btn-icon" data-toggle="modal" data-target="#edit-cinema" onclick="popupEditMovieTheater('+ item.id +')"><i class="fa fa-pencil" aria-hidden="true"></i></button></td></tr>');
+                            $('#tableMovieTheater>tbody').append('<tr><td><input class="form-check-input" onclick="chooseMovieTheater('+listCinema[i].id+')" type="checkbox" value="" id=""></td><td>'+ (i+1) + '</td><td>' + listCinema[i].Name + '</td><td>' + listCinema[i].Address +'</td><td>'+ listCinema[i].Kind+ '</td><td><button type="button" class="btn btn-inverse-info btn-icon" data-toggle="modal" data-target="#edit-cinema" onclick="popupEditMovieTheater('+ listCinema[i].id +')"><i class="fa fa-pencil" aria-hidden="true"></i></button></td></tr>');
                         }
                         
                     }
@@ -438,7 +438,7 @@ function changeLocation(idCombobox)
             }
             else
             {
-                alert("Somthing error !!!");
+                alert("Something error !!!");
             }
         }
         });    
@@ -504,7 +504,7 @@ function changePage(pageMTIndex)
             }
             else
             {
-                alert("Somthing error !!!");
+                alert("Something error !!!");
             }
         }
         });    
@@ -558,7 +558,7 @@ function UpdateMovieTheaterCluster()
       }
       else
       {
-        alert("Somthing error !!!");
+        alert("Something error !!!");
       }
     }
   })
@@ -589,7 +589,7 @@ function DeleteMovieTheaterCluster()
                 }
                 else
                 {
-                    alert("Somthing error !!!");
+                    alert("Something error !!!");
                 }
             }
         })
@@ -619,7 +619,7 @@ function AddNewMovieTheaterCluster()
       }
       else
       {
-        alert("Somthing error !!!");
+        alert("Something error !!!");
       }
     }
   })
@@ -665,7 +665,7 @@ function DeleteMovieTheater()
                 }
                 else
                 {
-                    alert("Somthing error !!!");
+                    alert("Something error !!!");
                 }
             }
         })
@@ -689,10 +689,11 @@ function popupEditMovieTheater(id)
            
             $('#edit-movietheater-name').val(item.Name);
             $('#edit-movietheater-address').val(item.Address);
-            //document.getElementById('edit-movietheater-image').src = URL.createObjectURL(
-              //  new Blob([aaa.buffer], { type: 'image/png' } /* (1) */)
-            //);
-            
+            // document.getElementById('edit-movietheater-image').src = URL.createObjectURL(
+            //    new Blob([aaa.buffer], { type: 'image/png' } /* (1) */)
+            // );
+            // $('#edit-movietheater-image-i').attr("src",item.Image.data);
+            // alert(img.src);
             $('#add-cb-cinema-4').val(item.Kind);
             $('#edit-movietheater-width').val(item.Width);
             $('#edit-movietheater-height').val(item.Height);
@@ -736,7 +737,7 @@ function AddNewMovieTheater()
       }
       else
       {
-        alert("Somthing error !!!");
+        alert("Something error !!!");
       }
     }
   })
@@ -770,7 +771,7 @@ function UpdateMovieTheater()
       }
       else
       {
-        alert("Somthing error !!!");
+        alert("Something error !!!");
       }
     }
   })

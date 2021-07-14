@@ -24,7 +24,7 @@ router.get('/',expressAsyncHandler(async function(req,res){
     {
         //============= SHOW TIME =====================================
         var ListShowtime=null;
-        const numItemStInPage=6;
+        const numItemStInPage=8;
         var pageIndex=1;
 
         if(req.query.pageIndex)
