@@ -12,16 +12,16 @@
 				</div>
 			</div>
 			<div class="w3l-populohny-grids">
-				<% for(var item of movies){ %>
+				<% var id=1; for(var item of movies){ %>
 					<div class="item vhny-grid">
 						<div class="box16">
-							<a href="#small-dialog-popular1" class="popup-with-zoom-anim play-view1">
+							<a href="#small-dialog-popular<%- id %>" class="popup-with-zoom-anim play-view1">
 								<figure>
 									<img class="img-fluid" src="<%- item.PosterImage %>" alt="">
 								</figure>
 								<span class="fa fa-play video-icon" aria-hidden="true"></span>
 							</a>
-							<div id="small-dialog-popular1" class="zoom-anim-dialog mfp-hide">
+							<div id="small-dialog-popular<%- id %>" class="zoom-anim-dialog mfp-hide">
 								<iframe src="<%- item.Trailer %>" allow="autoplay; fullscreen"
 									allowfullscreen=""></iframe>
 							</div>
@@ -39,7 +39,7 @@
 							</div>
 						</div>
 					</div>
-					<%}%>
+					<% id++; } %>
 
 
 			</div>
