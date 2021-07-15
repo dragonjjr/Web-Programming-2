@@ -10,7 +10,6 @@ router.get('/',expressAsyncHandler(async function(req,res){
     res.locals.movies=null;
     const movies= await Movie.getListMovieInShowtime();
     res.locals.movies=movies;
-    console.log(movies);
     res.render('USER/movie',{title : 'New movies'});
   
 }));

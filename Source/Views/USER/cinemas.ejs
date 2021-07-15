@@ -80,7 +80,7 @@ function ShowMovieTheater(id)
 	 //ajax 
 	$.ajax({
     type: "GET",
-    url: "/admin/cinemamanagement/getlistcinema?locationid="+id,
+    url: "/movietheater/getlistcinema?locationid="+id,
     contentType: "application/json",
     dataType: 'json',
     success: function(data)
@@ -108,7 +108,7 @@ function ShowDetailMovieTheater(id)
 	 //ajax 
 	$.ajax({
     type: "GET",
-    url: "/admin/cinemamanagement/getcinema?locationid="+id,
+    url: "/movietheater/getcinema?locationid="+id,
     contentType: "application/json",
     dataType: 'json',
     success: function(data)
@@ -130,7 +130,7 @@ function ShowDetailMovieTheater(id)
   	 //ajax 
 	$.ajax({
     type: "GET",
-    url: "/admin/cinemamanagement/gettimemovieofmovietheater?locationid="+id,
+    url: "/movietheater/gettimemovieofmovietheater?locationid="+id,
     contentType: "application/json",
     dataType: 'json',
     success: function(data)

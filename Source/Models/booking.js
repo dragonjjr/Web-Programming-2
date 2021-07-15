@@ -41,8 +41,10 @@ Booking.createBooking = async function(id,date,priceTotal,showtimeId,userId) {
  Booking.getListBookingOfUser= async function(userId)
  {
     //get date, movie, movietheater, tickets
-    const bookings = await db.query('SELECT "bk"."createdAt", "mv"."Name" AS "nameMovie", "mvt"."Name" AS "nameMovieTheater" FROM "Bookings" AS bk JOIN "Showtimes" AS st ON "bk"."ShowtimeId"="st"."id" JOIN "Movies" AS mv ON "mv"."id"="st"."MovieId" JOIN "MovieTheaters" AS mvt ON "mvt"."id"="st"."MovieTheaterId"',
-                     { type: db.QueryTypes.SELECT });
+    const bookings = await db.query('SELECT "bk"."createdAt", "mv"."Name" AS "nameMovie", "mvt"."Name" AS "nameMovieTheater" FROM "Bookings" AS bk JOIN "Showtimes" AS st ON "bk"."ShowtimeId"="st"."id" JOIN "Movies" AS mv ON "mv"."id"="st"."MovieId" JOIN "MovieTheaters" AS mvt ON "mvt"."id"="st"."MovieTheaterId" WHERE "bk"."UserId"=?',
+                     {   replacements: [userId],
+                         type: db.QueryTypes.SELECT 
+                    });
     return bookings;
  };
 

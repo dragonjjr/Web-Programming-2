@@ -98,7 +98,7 @@ router.post('/register',[
     await Email.send(username, subject, "Verify account",'<b>Link to verify account, click to login: <a href="'+url+'/auth/activateAccount?email='+username+'&token='+token+'">Verify account</a></b>');
 
     res.locals.notifications=null;
-    res.locals.notifications=["Send to your mail success, please check to reset password"];
+    res.locals.notifications=["Send to your mail success, please check to verify account"];
     return res.status(400).render('USER/auth/register', {title: 'Register' });
     
 }));
