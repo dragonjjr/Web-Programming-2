@@ -7,6 +7,9 @@ const Showtime=require('../../Models/showtime');
 const Movie=require('../../Models/movie');
 const moment = require('moment');
 const router = express.Router();
+const checkLogged=require('../../Middlewares/ensure-logged-Admin');
+
+router.use(checkLogged);
 
 //set layout
 router.use(function (req,res,next){

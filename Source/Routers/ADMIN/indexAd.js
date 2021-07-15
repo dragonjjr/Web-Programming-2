@@ -3,6 +3,9 @@ const expressAsyncHandler = require('express-async-handler');
 const User = require('../../Models/users');
 const Bookings = require('../../Models/booking');
 const router = express.Router();
+const checkLogged=require('../../Middlewares/ensure-logged-Admin');
+
+router.use(checkLogged);
 
 //set layout
 router.use(function (req,res,next){

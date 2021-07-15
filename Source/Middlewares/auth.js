@@ -8,7 +8,7 @@ module.exports=asyncHandler(async function auth(req,res,next)
     res.locals.currentUser=null;
     res.locals.errors = null;
     res.locals.notifications = null;
-    
+
     if(userId)
     {
         User.findById(userId).then(function(user){

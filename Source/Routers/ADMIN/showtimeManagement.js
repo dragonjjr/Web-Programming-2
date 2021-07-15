@@ -6,6 +6,9 @@ const Showtime= require('../../Models/showtime');
 const MovieTheaterCluster=require('../../Models/movieTheaterCluster');
 const MovieTheater=require('../../Models/movieTheater');
 const router = express.Router();
+const checkLogged=require('../../Middlewares/ensure-logged-Admin');
+
+router.use(checkLogged);
 
 //set layout
 router.use(function (req,res,next){

@@ -20,11 +20,24 @@ router.get('/login',expressAsyncHandler(async function(req,res){
 
 router.post('/login',expressAsyncHandler(async function(req,res){
 
-    res.redirect('/admin/index');
+    const {username,password}=req.body;
+    const user = await User.findByEmail(username);
+  
+    if(user && user.Password==password)
+    {
+        req.session.adminId=user.id;
+        res.redirect('/admin/index');
+    }
+    else
+    {
+        res.redirect('/admin/auth/login');
+    }
+
  }));
 
 router.get('/logout',expressAsyncHandler(async function(req,res){
-
+    delete req.session.adminId; //xóa session
+    req.logout();
     res.redirect('/admin/auth/login')
  }));
 

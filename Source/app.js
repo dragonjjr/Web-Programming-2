@@ -9,6 +9,7 @@ const db=require('./Models/database');
 
 //middleware
 const authMiddleware=require('./Middlewares/auth');
+const authAdminMiddleware=require('./Middlewares/authAdmin');
 
 //router
 //user
@@ -42,6 +43,7 @@ app.use(bodyParser.json());
 app.use(expressLayouts);
 
 app.use(authMiddleware);
+app.use(authAdminMiddleware);
 
 //routing
 app.use('/auth',authRouter);
