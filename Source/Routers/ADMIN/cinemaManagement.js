@@ -3,6 +3,9 @@ const expressAsyncHandler = require('express-async-handler');
 const User = require('../../Models/users');
 const MovieTheaterCluster = require('../../Models/movieTheaterCluster');
 const MovieTheater = require('../../Models/movieTheater');
+const Showtime=require('../../Models/showtime');
+const Movie=require('../../Models/movie');
+const moment = require('moment');
 const router = express.Router();
 
 //set layout
@@ -88,6 +91,53 @@ router.get('/getlistcinema',expressAsyncHandler(async function(req,res){
             
         }
         res.send(JSON.stringify(cinema));
+    }
+    catch
+    {
+        res.send(JSON.stringify("F"));
+    }
+    
+}));
+
+
+
+router.get('/getcinema',expressAsyncHandler(async function(req,res){
+
+    try
+    {
+        const locationId=req.query.locationid;
+        var cinema = await MovieTheater.findById(locationId);
+        res.send(JSON.stringify(cinema));
+    }
+    catch
+    {
+        res.send(JSON.stringify("F"));
+    }
+    
+}));
+
+router.get('/gettimemovieofmovietheater',expressAsyncHandler(async function(req,res){
+
+    try
+    {
+        const locationId=req.query.locationid;
+        const nameMovie = await Movie.getNameMovieOfMovieTheater(locationId);
+        const timeMovie = await Showtime.getTimeMovieOfMovieTheater(locationId);
+        timeMovie.forEach(element => {
+            element.BeginAt = moment(element.BeginAt).format("HH:mm A");
+        });
+        timeMovie.sort(function (a, b) {
+            return a.BeginAt.localeCompare(b.BeginAt);
+        });
+
+        var ListTimeMovie = [[],[]];
+        nameMovie.forEach(elementnameMovie=>{
+            ListTimeMovie[0].push(elementnameMovie);
+        })
+        timeMovie.forEach(elementtimeMovie=>{
+            ListTimeMovie[1].push(elementtimeMovie);
+        })
+        res.send(JSON.stringify(ListTimeMovie));
     }
     catch
     {

@@ -1,246 +1,180 @@
+
+
 <div class="container cinemas">
 	<div class="title">
 		<h1>CINEMAS</h1>
 		<hr>
 	</div>
-	<% var a=[];%>
-		<div class="cinema-area">
-			<h2>Cinema Area</h2>
-			<ul class="nav">
-				<% if(movieTheaterCluster){ %>
-					<% movieTheaterCluster.forEach(element=> {%>
-						<% a.push(element.id) ; %>
-							<li class="nav-item"><a href="#" class="nav-link"
-									onclick="toggleVisibility('<%= element.id %>')">
-									<%- element.Name %>
-								</a></li>
-							<% })%>
-								<% }%>
-			</ul>
-			<hr>
-		</div>
-		<div class="cinema-list">
-			<h2>Cinema List</h2>
+	<div class="cinema-area">
+		<h2>Cinema Area</h2>
+		<ul class="nav">
 			<% if(movieTheaterCluster){ %>
-				<% movieTheaterCluster.forEach(elementTheaterCluster=>{%>
-					<% if(elementTheaterCluster.id==1){ %>
-						<div id="<%= elementTheaterCluster.id %>">
-							<ul class="nav">
-								<% if(movieTheater) { %>
-									<% movieTheater.forEach(elementTheater=>{%>
-										<% if(elementTheater.MovieTheaterClusterId==elementTheaterCluster.id){%>
-											<li class="nav-item"><a href="#" class="nav-link"
-													onclick="toggleVisibility3('<%= elementTheater.id %>')">
-													<%- elementTheater.Name %>
-												</a></li>
-											<% }%>
-												<% }) %>
-													<% } %>
-							</ul>
-						</div>
-						<% }else { %>
-							<div id="<%= elementTheaterCluster.id %>" style="display: none;">
-								<ul class="nav">
-									<% if(movieTheater) { %>
-										<% movieTheater.forEach(elementTheater=>{%>
-											<% if(elementTheater.MovieTheaterClusterId==elementTheaterCluster.id){%>
-												<li class="nav-item"><a href="#" class="nav-link"
-														onclick="toggleVisibility3('<%= elementTheater.id %>')">
-														<%- elementTheater.Name %>
-													</a></li>
-												<% }%>
-													<% }) %>
-														<% } %>
-								</ul>
-							</div>
-							<% } %>
-								<% }) %>
-									<% } %>
+				<% let i = 1; %>
+					<% movieTheaterCluster.forEach(element => {%>
+						<% if(i==1){ %>
+							<li class="nav-item"><a href="#" class="nav-link" id="show-movie-theater-li-1" onclick="ShowMovieTheater('<%= element.id %>')"><%- element.Name %></a></li>
+						<% } else{%>
+							<li class="nav-item"><a href="#" class="nav-link" onclick="ShowMovieTheater('<%= element.id %>')"><%- element.Name %></a></li>
+						<% } %>
+						<% i++;%>
+					<% })%>
+			<% }%>
+		</ul>
+		<hr>
+	</div>
+	<div class="cinema-list">
+		<h2>Cinema List</h2>
+		<div id="show-movie-theater">
+			<ul class="nav">
+			</ul>
 		</div>
+	</div>
 </div>
-<% var movietheater=[]; %>
-	<% if(movieTheater){ %>
-		<% movieTheater.forEach(elementTheater=>{%>
-			<% movietheater.push(elementTheater.id) ; %>
-				<div id="theater-<%= elementTheater.id %>" class="container theater" style="display: none;">
-					<h1 style="color: #bd034d;">THEATER</h1>
-					<div class="theater-name">
-						<h2>
-							<%= elementTheater.Name %>
-						</h2>
-						<p>
-							<%= elementTheater.Address %>
-						</p>
-					</div>
-					<div class="theater-info">
-						<img src="<%= elementTheater.Image %>" class="img-fluid" alt="theater">
-					</div>
-					<div class="theater-button">
-						<div class="button-row">
-							<div class="movie-button">
-								<button class="round-red-btn"
-									onclick="toggleVisibility2('showtimes-<%= elementTheater.id %>')">Showtimes</button>
-								<button class="round-red-btn"
-									onclick="toggleVisibility2('details-<%= elementTheater.id %>')"> Details</button>
-							</div>
-						</div>
-					</div>
-					<div id="showtimes-<%= elementTheater.id %>" class="showtimes">
-						<% if(nameMovie) {%>
-							<% nameMovie.forEach(elementnameMovie=>{%>
-								<% if(elementnameMovie.MovieTheaterId==elementTheater.id) {%>
-									<div class="movies">
-										<p class="movie-name">
-											<%= elementnameMovie.Name %>
-										</p>
-										<ul class="nav times">
-											<% if(timeMovie) {%>
-												<% timeMovie.forEach(elementTimeMovie=>{ %>
-													<% if(elementTimeMovie.MovieTheaterId==elementnameMovie.MovieTheaterId
-														&& elementTimeMovie.id==elementnameMovie.id){ %>
-														<li class="nav-item"><a
-																href="/booking?id=<%= elementnameMovie.id %>"
-																class="nav-link">
-																<%= elementTimeMovie.BeginAt %>
-															</a></li>
-														<% } %>
-															<% })} %>
-										</ul>
-									</div>
-									<hr>
-									<% } %>
-										<% })} %>
-					</div>
-					<div id="details-<%= elementTheater.id %>" style="display: none;" class="details">
-						<div class="img-price">
-							<img src="/images/price.png" class="img-fluid" alt="price">
-						</div>
-						<ul class="nav details">
-							<li class="nav-item">- Dành cho khách hàng tại rạp Gold Class, trà và cà phê được phục vụ
-								miễn phí 30 phút/1
-								lần trong suốt suất chiếu.</li>
-							<li class="nav-item">- Vui lòng xuất trình thẻ thành viên CGV trước khi mua vé để được tích
-								điểm.</li>
-							<li class="nav-item">- Giá vé khi đặt vé trực tuyến trên website và ứng dụng CGV là giá vé
-								người lớn. Các
-								loại vé như học sinh-sinh viên, vé trẻ em, vé người cao tuổi, vé U22 vui lòng mua trực
-								tiếp tại quầy.
-							</li>
-							<li class="nav-item">- Vé trẻ em chỉ xuất khi có sự hiện diện của trẻ dưới 1m3 và trên 2
-								tuổi.</li>
-						</ul>
-					</div>
-				</div>
-				<% })} %>
 
-					<script>
-
-						//cinema list
-						var divs = [];
-						var divsmovietheaterrrr = [];
+<div id="theater" class="container theater" style="display: none;">
+	<h1 style="color: #bd034d;">THEATER</h1>
+	<div class="theater-name">
+		<h2 id="theater-name">Cinema Q1</h2>
+		<p id="theater-address">Tầng 3, TTTM Vincom Center Đồng Khởi, 72 Lê Thánh Tôn & 45A Lý Tự Trọng, Quận 1, TP.HCM</p>
+	</div>
+	<div class="theater-info" id="theater-image">
+		<img src="/images/theater.jpg" class="img-fluid" alt="theater">
+	</div>
+	<div class="theater-button">
+		<div class="button-row">
+			<div class="movie-button">
+				<button class="round-red-btn" onclick="VisibilityShowtime()">Showtimes</button>
+				<button class="round-red-btn" onclick="VisibilityDetail()"> Details</button>
+			</div>
+		</div>
+	</div>
+	<div id="showtimes" class="showtimes">
+		
+	</div>
+	<div id="details" style="display: none; margin-top: 20px;" class="details">
+		<div class="img-price">
+			<img src="/images/price.png" class="img-fluid" alt="price">
+		</div>
+		<ul class="nav details">
+			<li class="nav-item">- Dành cho khách hàng tại rạp Gold Class, trà và cà phê được phục vụ miễn phí 30 phút/1
+				lần trong suốt suất chiếu.</li>
+			<li class="nav-item">- Vui lòng xuất trình thẻ thành viên CGV trước khi mua vé để được tích điểm.</li>
+			<li class="nav-item">- Giá vé khi đặt vé trực tuyến trên website và ứng dụng CGV là giá vé người lớn. Các
+				loại vé như học sinh-sinh viên, vé trẻ em, vé người cao tuổi, vé U22 vui lòng mua trực tiếp tại quầy.
+			</li>
+			<li class="nav-item">- Vé trẻ em chỉ xuất khi có sự hiện diện của trẻ dưới 1m3 và trên 2 tuổi.</li>
+		</ul>
+	</div>
+</div>
 
 
-						var temp5 = "<%= movietheater; %>";
-						const movieTheaterrrrrr = temp5.split(',');
-						movieTheaterrrrrr.forEach(function (obj) {
-							divsmovietheaterrrr.push("theater-" + obj);
-						});
+<script src="https://bundle.run/buffer@6.0.3"></script>
+
+<script>
+window.onload = function() {
+	document.getElementById("show-movie-theater-li-1").focus();
+	document.getElementById("show-movie-theater-li-1").click();
+};
+function ShowMovieTheater(id)
+{
+	 //ajax 
+	$.ajax({
+    type: "GET",
+    url: "/admin/cinemamanagement/getlistcinema?locationid="+id,
+    contentType: "application/json",
+    dataType: 'json',
+    success: function(data)
+    {
+		$('#show-movie-theater > ul').empty();
+		if(data && data!="F")
+		{
+			data.forEach(element => {
+				var buf = new buffer.Buffer.from(element.Image.data);
+				var str = new TextDecoder().decode(buf.buffer);
+				$('#show-movie-theater > ul').append('<li class="nav-item"><a href="#" onclick="ShowDetailMovieTheater('+element.id+')" class="nav-link">'+ element.Name+'</a></li>');
+			});
+		}
+		else
+		{
+			alert("Somthing error !!!");
+		}
+    }
+  })
+}
+
+function ShowDetailMovieTheater(id)
+{
+	VisibilityShowtime();
+	 //ajax 
+	$.ajax({
+    type: "GET",
+    url: "/admin/cinemamanagement/getcinema?locationid="+id,
+    contentType: "application/json",
+    dataType: 'json',
+    success: function(data)
+    {
+		$('#theater').css("display","none");
+		$('#theater').css("display","block");
+		if(data && data!="F")
+		{
+			$('#theater-name').empty();
+			$('#theater-name').text(data.Name);
+			$('#theater-address').text(data.Address);
+		}
+		else
+		{
+			alert("Somthing error !!!");
+		}
+    }
+  });
+  	 //ajax 
+	$.ajax({
+    type: "GET",
+    url: "/admin/cinemamanagement/gettimemovieofmovietheater?locationid="+id,
+    contentType: "application/json",
+    dataType: 'json',
+    success: function(data)
+    {
+		$("#showtimes").empty();
+		if(data && data!="F")
+		{
+			
+			data[0].forEach(elementNameMovie=>{
+				$("#showtimes").append('<div class="movies" id="div-'+elementNameMovie.id+'"><p class="movie-name">'+ elementNameMovie.Name+ '</p><ul class="nav times" id="ul-showtimes-'+elementNameMovie.id+'"></ul></div><hr>');
+				$('#ul-showtimes').empty();
+				data[1].forEach(elementTimeMovie=>{
+					if(elementNameMovie.Name==elementTimeMovie.Name)
+					{
+						$("#ul-showtimes-"+elementNameMovie.id).append('<li class="nav-item"><a href="/booking?id='+elementNameMovie.id+'" class="nav-link" id="borderTagA">'+elementTimeMovie.BeginAt+'</a></li>');
+					}
+				})
+				if($("#ul-showtimes-"+elementNameMovie.id +' li').length==0)
+				{
+					$("#div-"+elementNameMovie.id).remove();
+				}
+			})
+		}
+		else
+		{
+			alert("Somthing error !!!");
+		}
+    }
+  });
+}
 
 
-						var temp = "<%= a; %>";
-						const answ = temp.split(',');
-						answ.forEach(function (obj) {
-							divs.push(obj);
-						});
-						var visibleDivId = null;
-						function toggleVisibility(divId) {
-							if (visibleDivId === divId) {
-								//visibleDivId = null;
-							} else {
-								visibleDivId = divId;
-							}
-							hideNonVisibleDivs();
-							hideTheater();
-						}
-						function hideNonVisibleDivs() {
-							var i, divId, div;
-							for (i = 0; i < divs.length; i++) {
-								divId = divs[i];
-								div = document.getElementById(divId);
-								if (visibleDivId === divId) {
-									div.style.display = "block";
-								} else {
-									div.style.display = "none";
-								}
-							}
-						}
-						function hideTheater() {
-							var i, divId, div;
-							for (i = 0; i < divsmovietheaterrrr.length; i++) {
-								divId = divsmovietheaterrrr[i];
-								div = document.getElementById(divId);
-								div.style.display = "none";
-							}
-						}
+function VisibilityDetail()
+{
+	$("#showtimes").css("display","none");
+	$('#details').css("display","block");
+}
 
+function VisibilityShowtime()
+{
+	$("#details").css("display","none");
+	$('#showtimes').css("display","block");
+}
 
+	
 
-						var divTheater = [];
-						var temp2 = "<%= movietheater; %>";
-						const movietheater = temp2.split(',');
-						movietheater.forEach(function (obj) {
-							divTheater.push("theater-" + obj);
-						});
-						var visibleTheaterId = null;
-						function toggleVisibility3(TheaterId) {
-							if (visibleDivId === "theater-" + TheaterId) {
-								//visibleDivId = null;
-							} else {
-								visibleDivId = "theater-" + TheaterId;
-							}
-							hideNonVisibleDivs3();
-						}
-						function hideNonVisibleDivs3() {
-							var i, divId, div;
-							for (i = 0; i < divTheater.length; i++) {
-								divId = divTheater[i];
-								div = document.getElementById(divId);
-								if (visibleDivId === divId) {
-									div.style.display = "block";
-								} else {
-									div.style.display = "none";
-								}
-							}
-						}
-
-						//movie showtimes
-						var divs2 = [];
-						var temp3 = "<%= a; %>";
-						const movietheatercluster = temp3.split(',');
-						movietheatercluster.forEach(function (obj) {
-							divs2.push("showtimes-" + obj);
-							divs2.push("details-" + obj);
-						});
-						var visibleDivId2 = null;
-						function toggleVisibility2(divId) {
-							if (visibleDivId2 === divId) {
-								//visibleDivId = null;
-							} else {
-								visibleDivId2 = divId;
-							}
-							hideNonVisibleDivs2();
-						}
-						function hideNonVisibleDivs2() {
-							var i, divId, div;
-							for (i = 0; i < divs2.length; i++) {
-								divId = divs2[i];
-								div = document.getElementById(divId);
-								if (visibleDivId2 === divId) {
-									div.style.display = "block";
-								} else {
-									div.style.display = "none";
-								}
-							}
-						}
-
-					</script>
+</script>

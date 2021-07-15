@@ -77,10 +77,11 @@ Showtime.getListByCinemaId = async function(cinemaId)
     return showtimes;
 }
 
-Showtime.getTimeMovieOfMovieTheater = async function()
+Showtime.getTimeMovieOfMovieTheater = async function(id)
 {
-    const timeMovie = db.query('SELECT"mv"."Name","st"."MovieTheaterId","st"."BeginAt", "mv"."id" FROM"Showtimes"AS"st"JOIN"MovieTheaters"AS"mt"ON"st"."MovieTheaterId"="mt"."id"JOIN"Movies"AS"mv"ON"mv"."id"="st"."MovieId"GROUP BY"st"."MovieTheaterId","mv"."Name","st"."BeginAt","mv"."id"',
-                                { type: db.QueryTypes.SELECT });
+    const timeMovie = db.query('SELECT DISTINCT "mv"."Name","st"."MovieTheaterId","st"."BeginAt", "mv"."id" FROM"Showtimes"AS"st"JOIN"MovieTheaters"AS"mt"ON"st"."MovieTheaterId"="mt"."id"JOIN"Movies"AS"mv"ON"mv"."id"="st"."MovieId" WHERE "st"."MovieTheaterId" = ? AND "st"."BeginAt">NOW() GROUP BY"st"."MovieTheaterId","mv"."Name","st"."BeginAt","mv"."id"',
+                                { replacements: [id],
+                                  type: db.QueryTypes.SELECT });
     return timeMovie;
 }
 
