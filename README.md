@@ -1,5 +1,5 @@
 # Web Programming 2 Subject - Movie Tickets Booking Website Project
-# Using: Node.js, Express.js, EJS Template, Postgres, CSS, Bootstrap 4, JavaScript, JQuery
+# Using: Node.js, Express.js, EJS Template, Postgres, CSS, Bootstrap 4, JavaScript, AJAX, JQuery
 
 1. Homepage
 - Banner
