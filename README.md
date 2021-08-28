@@ -28,7 +28,7 @@
 - Revenue statistics
 - Movies, theaters, and showtimes management (add, delete, edit)
 
-#Screenshots
+# Screenshots
 
 <img src="./Source/Assets/images/Screenshots/Homepage.png" width="700">
 <img src="./Source/Assets/images/Screenshots/SignIn.png" width="700">
