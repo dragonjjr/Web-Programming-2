@@ -6,13 +6,13 @@ async function send(to, subject, content,htmlContent) {
         port: 587,
         secure: false,
         auth: {
-            user: process.env.EMAIL_USERNAME || 'testweb18ck1@gmail.com',
-            pass: process.env.EMAIL_PASSWORD || 'Abcxyz123',
+            user: process.env.EMAIL_USERNAME || 'nakhuong2690@gmail.com',
+            pass: process.env.EMAIL_PASSWORD || 'kxaakjceqtjtvtff',
         }
     });
 
     return transporter.sendMail({
-        from: process.env.EMAIL_USERNAME || 'testweb18ck1@gmail.com',
+        from: process.env.EMAIL_USERNAME || 'nakhuong2690@gmail.com',
         to,
         subject,
         text: content,
